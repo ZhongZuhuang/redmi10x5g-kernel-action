@@ -185,6 +185,7 @@ oppo_reno12_pro_mt6985_u
 oneplus_11_t
 oneplus_10r_t
 oneplus_ace_t
+oneplus_ace_race_t
 oppo_find_n3_flip
 oppo_find_x6
 
