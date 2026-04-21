@@ -1050,6 +1050,10 @@ jobs:
           # SukiSU Ultra配置
           echo "CONFIG_KSU=y" >> "$CONFIG_FILE"
 
+          # Seccomp配置
+          echo "CONFIG_SECCOMP=y" >> "$CONFIG_FILE"
+          echo "CONFIG_SECCOMP_FILTER=y" >> "$CONFIG_FILE"
+
           # KPM配置
           if [ "${{ github.event.inputs.KPM }}" = "KPM" ] || [ "${{ github.event.inputs.KPM }}" = "N/A" ]; then
             echo "CONFIG_KPM=y" >> "$CONFIG_FILE"
