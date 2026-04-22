@@ -70,6 +70,8 @@ on:
         options:
           - MIUIX
           - MIUIX_SPOOF
+          - RESUKISU
+          - RESUKISU_SPOOF
           - MD3
           - MD3_SPOOF
       SUSFS_CI:
@@ -706,31 +708,55 @@ jobs:
           MANAGER_SOURCE="${{ github.event.inputs.MANAGER_SOURCE }}"
 
           case "$MANAGER_SOURCE" in
+            RESUKISU)
+              BRANCH="main"
+              ARTIFACT="Manager-release"
+              REPO="ReSukiSU/ReSukiSU"
+              DEFAULT_KSU_BRANCH="main"
+              ;;
+            RESUKISU_SPOOF)
+              BRANCH="main"
+              ARTIFACT="Spoofed-Manager-release"
+              REPO="ReSukiSU/ReSukiSU"
+              DEFAULT_KSU_BRANCH="main"
+              ;;
             MD3)
               BRANCH="old"
               ARTIFACT="manager"
+              REPO="SukiSU-Ultra/SukiSU-Ultra"
+              DEFAULT_KSU_BRANCH="builtin"
               ;;
             MD3_SPOOF)
               BRANCH="old"
               ARTIFACT="Spoofed-Manager"
+              REPO="SukiSU-Ultra/SukiSU-Ultra"
+              DEFAULT_KSU_BRANCH="builtin"
               ;;
             MIUIX_SPOOF)
               BRANCH="main"
               ARTIFACT="Spoofed-Manager"
+              REPO="SukiSU-Ultra/SukiSU-Ultra"
+              DEFAULT_KSU_BRANCH="builtin"
               ;;
             MIUIX|*)
               BRANCH="main"
               ARTIFACT="manager"
+              REPO="SukiSU-Ultra/SukiSU-Ultra"
+              DEFAULT_KSU_BRANCH="builtin"
               ;;
           esac
 
           echo "manager_branch=$BRANCH" >> "$GITHUB_OUTPUT"
           echo "manager_artifact=$ARTIFACT" >> "$GITHUB_OUTPUT"
+          echo "manager_repo=$REPO" >> "$GITHUB_OUTPUT"
+          echo "default_ksu_branch=$DEFAULT_KSU_BRANCH" >> "$GITHUB_OUTPUT"
 
       - name: Add SukiSU Ultra
         run: |
           cd kernel_workspace/kernel_platform
           MANAGER_BRANCH="${{ steps.manager.outputs.manager_branch }}"
+          MANAGER_REPO="${{ steps.manager.outputs.manager_repo }}"
+          DEFAULT_KSU_BRANCH="${{ steps.manager.outputs.default_ksu_branch }}"
           KSU_META="${{ github.event.inputs.KSU_META }}"
 
           # 必须包含两个分隔符（至少三个字段）
@@ -742,11 +768,16 @@ jobs:
           # 解析字段：分支 / 自定义标识 / 手动 hash
           IFS='/' read -r BRANCH_NAME CUSTOM_TAG MANUAL_HASH <<< "$KSU_META"
 
+          if [[ "$MANAGER_REPO" == "ReSukiSU/ReSukiSU" && "$BRANCH_NAME" == "builtin" ]]; then
+            echo "ReSukiSU 不存在 builtin 分支，自动回退到 $DEFAULT_KSU_BRANCH"
+            BRANCH_NAME="$DEFAULT_KSU_BRANCH"
+          fi
+
           echo "分支名: $BRANCH_NAME"
           [[ -n "$CUSTOM_TAG" ]] && echo "自定义版本标识: $CUSTOM_TAG" || echo "自定义版本标识: 未启用"
           [[ -n "$MANUAL_HASH" ]] && echo "手动指定 hash: $MANUAL_HASH" || echo "手动指定 hash: 未启用"
 
-          curl -LSs "https://raw.githubusercontent.com/SukiSU-Ultra/SukiSU-Ultra/${MANAGER_BRANCH}/kernel/setup.sh" | bash -s "$BRANCH_NAME"
+          curl -LSs "https://raw.githubusercontent.com/${MANAGER_REPO}/${MANAGER_BRANCH}/kernel/setup.sh" | bash -s "$BRANCH_NAME"
           cd ./KernelSU
 
           # 如果指定了手动 hash，就切换到该提交
@@ -756,11 +787,15 @@ jobs:
             SHORT_HASH=${MANUAL_HASH:0:8}
           fi
 
-          KSU_VERSION_TAG=$(curl -fsSL https://api.github.com/repos/SukiSU-Ultra/SukiSU-Ultra/releases/latest \
-            | grep '"tag_name":' | sed -E 's/.*"v?([^"]+)".*/\1/')
-          if [[ -z "$KSU_VERSION_TAG" || "$(printf '%s\n' "$KSU_VERSION_TAG" "3.1.7" | sort -V | head -n1)" != "3.1.7" ]]; then
-            KSU_VERSION_TAG="3.1.7"
+          KSU_VERSION_TAG=$(git describe --abbrev=0 --tags 2>/dev/null || true)
+          if [[ -z "$KSU_VERSION_TAG" ]]; then
+            KSU_VERSION_TAG=$(curl -fsSL "https://api.github.com/repos/${MANAGER_REPO}/releases/latest" \
+              | grep '"tag_name":' | sed -E 's/.*"v?([^"]+)".*/\1/' || true)
           fi
+          if [[ -z "$KSU_VERSION_TAG" ]]; then
+            KSU_VERSION_TAG="0.0.0"
+          fi
+          KSU_VERSION_TAG="${KSU_VERSION_TAG#v}"
           echo "KSU_VERSION_TAG=$KSU_VERSION_TAG" >> $GITHUB_ENV
 
           GIT_HASH=$(git rev-parse --short HEAD)
@@ -800,7 +835,7 @@ jobs:
             sed -i "s|^KSU_VERSION_API := .*|KSU_VERSION_API := $ESC_KSU_VERSION_TAG|" kernel/Makefile
           fi
 
-          KSU_VERSION=$(expr $(git rev-list --count "$MANAGER_BRANCH" 2>/dev/null || echo 13000) + 37185)
+          KSU_VERSION=$(expr $(git rev-list --count HEAD 2>/dev/null || echo 13000) + 37185)
           echo "KSUVER=$KSU_VERSION" >> $GITHUB_ENV
 
           echo "::group::最终 Makefile 中版本信息及部分调试结果预览"
@@ -1430,17 +1465,19 @@ jobs:
         run: |
           MANAGER_BRANCH="${{ steps.manager.outputs.manager_branch }}"
           MANAGER_ARTIFACT="${{ steps.manager.outputs.manager_artifact }}"
+          MANAGER_REPO="${{ steps.manager.outputs.manager_repo }}"
 
           echo "Using branch: $MANAGER_BRANCH"
+          echo "Using repo: $MANAGER_REPO"
           echo "Downloading artifact: $MANAGER_ARTIFACT"
 
-          run_id=$(gh api "repos/SukiSU-Ultra/SukiSU-Ultra/actions/workflows/build-manager.yml/runs?branch=$MANAGER_BRANCH&status=success&per_page=1" --jq '.workflow_runs[0].id' || echo "")
+          run_id=$(gh api "repos/${MANAGER_REPO}/actions/workflows/build-manager.yml/runs?branch=$MANAGER_BRANCH&status=success&per_page=1" --jq '.workflow_runs[0].id' || echo "")
 
           if [[ -z "$run_id" ]]; then
             echo "No successful workflow run found on branch $MANAGER_BRANCH. Skipping download."
             exit 0
           fi
-          artifact_url=$(gh api "repos/SukiSU-Ultra/SukiSU-Ultra/actions/runs/$run_id/artifacts" | jq -r ".artifacts[] | select(.name == \"$MANAGER_ARTIFACT\") | .archive_download_url" | head -n1)
+          artifact_url=$(gh api "repos/${MANAGER_REPO}/actions/runs/$run_id/artifacts" | jq -r ".artifacts[] | select(.name == \"$MANAGER_ARTIFACT\") | .archive_download_url" | head -n1)
 
           if [[ -z "$artifact_url" ]]; then
             echo "No artifact '$MANAGER_ARTIFACT' found in run $run_id. Skipping download."
