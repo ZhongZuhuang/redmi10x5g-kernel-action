@@ -375,6 +375,7 @@ jobs:
           for rel in (
               "drivers/input/touchscreen/focaltech_touch/include/firmware/fw_ft3518_j7.i",
               "drivers/input/touchscreen/focaltech_touch/include/firmware/fw_sample.i",
+              "drivers/input/touchscreen/focaltech_touch/include/pramboot/FT8719_Pramboot_V0.5_20171221.i",
           ):
               path = Path(rel)
               path.parent.mkdir(parents=True, exist_ok=True)
