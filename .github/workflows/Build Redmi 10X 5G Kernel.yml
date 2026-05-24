@@ -103,7 +103,8 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y \
-            bc bison build-essential ccache curl flex git jq libelf-dev \
+            bc binutils-aarch64-linux-gnu binutils-arm-linux-gnueabi \
+            bison build-essential ccache curl flex git jq libelf-dev \
             libssl-dev lld llvm make python3 unzip wget zip
 
       - name: Restore ccache
