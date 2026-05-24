@@ -146,7 +146,8 @@ jobs:
         working-directory: kernel
         run: |
           set -euo pipefail
-          python3 -m lib2to3 -w tools/dct >/dev/null 2>&1 || true
+          find tools/dct -name '*.py' -print0 | xargs -0 python3 -m lib2to3 -w >/dev/null
+          grep -R "print '''" -n tools/dct && exit 1 || true
 
       - name: Apply SUSFS
         if: ${{ inputs.ENABLE_SUSFS == true }}
@@ -277,6 +278,7 @@ jobs:
 
           make O=out \
             ARCH=arm64 \
+            python=python3 \
             CC="ccache $CLANG" \
             HOSTCC="gcc" \
             HOSTCXX="g++" \
@@ -309,7 +311,7 @@ jobs:
             scripts/config --file out/.config --set-str LOCALVERSION "${{ inputs.KERNEL_SUFFIX }}"
             scripts/config --file out/.config -d LOCALVERSION_AUTO
           fi
-          make O=out ARCH=arm64 olddefconfig
+          make O=out ARCH=arm64 python=python3 olddefconfig
 
       - name: Build kernel
         working-directory: kernel
@@ -320,6 +322,7 @@ jobs:
           LLD="$GITHUB_WORKSPACE/toolchains/proton-clang/bin/ld.lld"
           make -j"$(nproc --all)" O=out \
             ARCH=arm64 \
+            python=python3 \
             CC="ccache $CLANG" \
             HOSTCC="gcc" \
             HOSTCXX="g++" \
