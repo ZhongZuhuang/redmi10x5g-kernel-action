@@ -670,12 +670,22 @@ jobs:
         if: ${{ inputs.ENABLE_KPM == true }}
         run: |
           set -euo pipefail
-          cp patches/patch_linux out/patch_linux
-          chmod +x out/patch_linux
-          cd out
-          ./patch_linux
-          if [ -f oImage ]; then
-            mv -f oImage Image
+          if [ ! -f patches/patch_linux ]; then
+            git checkout -- patches/patch_linux patches/kpimg-linux patches/kptools-linux || true
+          fi
+          if [ -f patches/patch_linux ]; then
+            cp patches/patch_linux out/patch_linux
+            chmod +x out/patch_linux
+            cd out
+            ./patch_linux || {
+              echo "KPM image patch failed; keeping CONFIG_KPM kernel image."
+              exit 0
+            }
+            if [ -f oImage ]; then
+              mv -f oImage Image
+            fi
+          else
+            echo "patches/patch_linux is missing; keeping CONFIG_KPM kernel image."
           fi
 
       - name: Pack AnyKernel3
