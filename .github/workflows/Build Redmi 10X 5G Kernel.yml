@@ -146,8 +146,13 @@ jobs:
         working-directory: kernel
         run: |
           set -euo pipefail
-          find tools/dct -name '*.py' -print0 | xargs -0 python3 -m lib2to3 -w >/dev/null
-          grep -R "print '''" -n tools/dct && exit 1 || true
+          while IFS= read -r -d '' file; do
+            python3 -m lib2to3 -w "$file" >/dev/null 2>&1 || true
+          done < <(find tools/dct -name '*.py' -print0)
+          if grep -n "print '''" tools/dct/DrvGen.py; then
+            echo "DrvGen.py was not converted to Python 3" >&2
+            exit 1
+          fi
 
       - name: Apply SUSFS
         if: ${{ inputs.ENABLE_SUSFS == true }}
