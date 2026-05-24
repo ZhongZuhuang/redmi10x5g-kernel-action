@@ -348,6 +348,125 @@ jobs:
           path.write_text(text)
           PY
 
+      - name: Apply ReSukiSU manual hooks
+        if: ${{ inputs.ENABLE_RESUKISU == true }}
+        working-directory: kernel
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          def patch_file(rel, replacements):
+              path = Path(rel)
+              text = path.read_text()
+              for old, new in replacements:
+                  if new.strip() in text:
+                      continue
+                  if old not in text:
+                      raise SystemExit(f"{rel}: hook anchor not found: {old[:80]!r}")
+                  text = text.replace(old, new, 1)
+              path.write_text(text)
+
+          patch_file("fs/exec.c", [
+              (
+                  "#include <linux/vmalloc.h>\n",
+                  "#include <linux/vmalloc.h>\n#include <linux/kallsyms.h>\n\n"
+                  "extern int ksu_handle_execveat(int *fd, struct filename **filename_ptr,\n"
+                  "\t\t\t\t      void *argv, void *envp, int *flags);\n",
+              ),
+              (
+                  "\tretval = bprm_mm_init(bprm);\n",
+                  "\tretval = ksu_handle_execveat(&fd, &filename, &argv, &envp, &flags);\n"
+                  "\tif (retval)\n"
+                  "\t\tgoto out_unmark;\n\n"
+                  "\tretval = bprm_mm_init(bprm);\n",
+              ),
+          ])
+
+          patch_file("fs/open.c", [
+              (
+                  "#include <linux/ima.h>\n",
+                  "#include <linux/ima.h>\n#include <linux/kallsyms.h>\n\n"
+                  "extern int ksu_handle_faccessat(int *dfd,\n"
+                  "\t\t\t\t      const char __user **filename_user,\n"
+                  "\t\t\t\t      int *mode, int *__unused_flags);\n",
+              ),
+              (
+                  "\tif (mode & ~S_IRWXO)\t/* where's F_OK, X_OK, W_OK, R_OK? */\n"
+                  "\t\treturn -EINVAL;\n",
+                  "\tksu_handle_faccessat(&dfd, &filename, &mode, NULL);\n\n"
+                  "\tif (mode & ~S_IRWXO)\t/* where's F_OK, X_OK, W_OK, R_OK? */\n"
+                  "\t\treturn -EINVAL;\n",
+              ),
+          ])
+
+          patch_file("fs/stat.c", [
+              (
+                  "#include <linux/syscalls.h>\n",
+                  "#include <linux/syscalls.h>\n#include <linux/kallsyms.h>\n\n"
+                  "extern int ksu_handle_stat(int *dfd,\n"
+                  "\t\t\t\t   const char __user **filename_user, int *flags);\n"
+                  "extern void ksu_handle_newfstat_ret(unsigned int *fd,\n"
+                  "\t\t\t\t\t    struct stat __user **statbuf_ptr);\n"
+                  "extern void ksu_handle_fstat64_ret(unsigned long *fd,\n"
+                  "\t\t\t\t\t   struct stat64 __user **statbuf_ptr);\n",
+              ),
+              (
+                  "\terror = vfs_fstatat(dfd, filename, &stat, flag);\n",
+                  "\tksu_handle_stat(&dfd, &filename, &flag);\n"
+                  "\terror = vfs_fstatat(dfd, filename, &stat, flag);\n",
+              ),
+              (
+                  "\tif (!error)\n"
+                  "\t\terror = cp_new_stat(&stat, statbuf);\n\n"
+                  "\treturn error;\n"
+                  "}\n\n"
+                  "SYSCALL_DEFINE4(readlinkat",
+                  "\tif (!error) {\n"
+                  "\t\terror = cp_new_stat(&stat, statbuf);\n"
+                  "\t\tif (!error)\n"
+                  "\t\t\tksu_handle_newfstat_ret(&fd, &statbuf);\n"
+                  "\t}\n\n"
+                  "\treturn error;\n"
+                  "}\n\n"
+                  "SYSCALL_DEFINE4(readlinkat",
+              ),
+              (
+                  "\tif (!error)\n"
+                  "\t\terror = cp_new_stat64(&stat, statbuf);\n\n"
+                  "\treturn error;\n"
+                  "}\n\n"
+                  "SYSCALL_DEFINE4(fstatat64",
+                  "\tif (!error) {\n"
+                  "\t\terror = cp_new_stat64(&stat, statbuf);\n"
+                  "\t\tif (!error)\n"
+                  "\t\t\tksu_handle_fstat64_ret(&fd, &statbuf);\n"
+                  "\t}\n\n"
+                  "\treturn error;\n"
+                  "}\n\n"
+                  "SYSCALL_DEFINE4(fstatat64",
+              ),
+          ])
+
+          patch_file("kernel/reboot.c", [
+              (
+                  "#include <linux/uaccess.h>\n",
+                  "#include <linux/uaccess.h>\n#include <linux/kallsyms.h>\n\n"
+                  "extern int ksu_handle_sys_reboot(int magic1, int magic2,\n"
+                  "\t\t\t\t     unsigned int cmd, void __user **arg);\n",
+              ),
+              (
+                  "\tchar buffer[256];\n"
+                  "\tint ret = 0;\n\n",
+                  "\tchar buffer[256];\n"
+                  "\tint ret = 0;\n\n"
+                  "\tret = ksu_handle_sys_reboot(magic1, magic2, cmd, &arg);\n"
+                  "\tif (!ret)\n"
+                  "\t\treturn ret;\n\n",
+              ),
+          ])
+          PY
+
       - name: Apply clang compatibility fixes
         working-directory: kernel
         run: |
