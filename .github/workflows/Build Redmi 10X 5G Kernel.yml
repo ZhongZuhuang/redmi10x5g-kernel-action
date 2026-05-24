@@ -374,7 +374,7 @@ jobs:
           make O=out \
             ARCH=arm64 \
             python=python3 \
-            CC="ccache $CLANG --target=aarch64-linux-gnu" \
+            CC="$CLANG" \
             HOSTCC="gcc" \
             HOSTCXX="g++" \
             HOSTLD="/usr/bin/ld" \
@@ -422,7 +422,7 @@ jobs:
           make -j"$(nproc --all)" O=out \
             ARCH=arm64 \
             python=python3 \
-            CC="ccache $CLANG --target=aarch64-linux-gnu" \
+            CC="$CLANG" \
             HOSTCC="gcc" \
             HOSTCXX="g++" \
             HOSTLD="/usr/bin/ld" \
