@@ -374,7 +374,7 @@ jobs:
           make O=out \
             ARCH=arm64 \
             python=python3 \
-            CC="ccache $CLANG" \
+            CC="ccache $CLANG --target=aarch64-linux-gnu" \
             HOSTCC="gcc" \
             HOSTCXX="g++" \
             HOSTLD="/usr/bin/ld" \
@@ -383,6 +383,7 @@ jobs:
             LD="$LLD" \
             LLVM=1 \
             LLVM_IAS=1 \
+            CLANG_TRIPLE=aarch64-linux-gnu- \
             CROSS_COMPILE=aarch64-linux-gnu- \
             CROSS_COMPILE_ARM32=arm-linux-gnueabi- \
             "$DEFCONFIG"
@@ -421,7 +422,7 @@ jobs:
           make -j"$(nproc --all)" O=out \
             ARCH=arm64 \
             python=python3 \
-            CC="ccache $CLANG" \
+            CC="ccache $CLANG --target=aarch64-linux-gnu" \
             HOSTCC="gcc" \
             HOSTCXX="g++" \
             HOSTLD="/usr/bin/ld" \
@@ -430,6 +431,7 @@ jobs:
             LD="$LLD" \
             LLVM=1 \
             LLVM_IAS=1 \
+            CLANG_TRIPLE=aarch64-linux-gnu- \
             CROSS_COMPILE=aarch64-linux-gnu- \
             CROSS_COMPILE_ARM32=arm-linux-gnueabi- \
             Image.gz-dtb dtbs
