@@ -159,8 +159,8 @@ jobs:
                   1,
               )
               text = text.replace(
-                  "paras        :    parameter for generate wanted file\n'''",
-                  "paras        :    parameter for generate wanted file\n''')",
+                  "paras        :    parameter for generate wanted file\n'''\n",
+                  "paras        :    parameter for generate wanted file\n''')\n",
                   1,
               )
               text = text.replace("except Exception, e:", "except Exception as e:")
@@ -176,16 +176,7 @@ jobs:
           drvgen = Path("tools/dct/DrvGen.py")
           text = drvgen.read_text()
           text = text.replace(".keys_list()[", ".keys()[")
-          text = text.replace(
-              "def usage():\n    print '''",
-              "def usage():\n    print('''",
-              1,
-          )
-          text = text.replace(
-              "paras        :    parameter for generate wanted file\n'''",
-              "paras        :    parameter for generate wanted file\n''')",
-              1,
-          )
+          text = text.replace("'''))", "''')")
           text = text.replace(
               "import os, sys\n",
               "import os, sys\n\n"
