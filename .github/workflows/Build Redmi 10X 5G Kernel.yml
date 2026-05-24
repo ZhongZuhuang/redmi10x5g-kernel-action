@@ -269,7 +269,8 @@ jobs:
           make O=out \
             ARCH=arm64 \
             CC="ccache clang" \
-            HOSTCC="ccache clang" \
+            HOSTCC="gcc" \
+            HOSTCXX="g++" \
             LLVM=1 \
             LLVM_IAS=1 \
             CROSS_COMPILE=aarch64-linux-gnu- \
@@ -306,7 +307,8 @@ jobs:
           make -j"$(nproc --all)" O=out \
             ARCH=arm64 \
             CC="ccache clang" \
-            HOSTCC="ccache clang" \
+            HOSTCC="gcc" \
+            HOSTCXX="g++" \
             LLVM=1 \
             LLVM_IAS=1 \
             CROSS_COMPILE=aarch64-linux-gnu- \
