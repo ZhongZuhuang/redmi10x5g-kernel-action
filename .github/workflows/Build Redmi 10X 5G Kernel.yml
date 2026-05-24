@@ -199,6 +199,13 @@ jobs:
 
           for path in sorted(Path("tools/dct/obj").glob("*.py")):
               text = path.read_text()
+              text = re.sub(r"^from ModuleObj import (.+)$", r"from obj.ModuleObj import \1", text, flags=re.M)
+              text = re.sub(r"^from (GpioObj|EintObj|AdcObj|ClkObj|I2cObj|PmicObj|Md1EintObj|PowerObj|KpdObj|RfioObj) import (.+)$", r"from obj.\1 import \2", text, flags=re.M)
+              text = text.replace("import ChipObj\n", "")
+              path.write_text(text)
+
+          for path in sorted(Path("tools/dct/obj").glob("*.py")):
+              text = path.read_text()
               if "__dct_cmp(" in text and "def __dct_cmp(a, b):" not in text:
                   marker = "from utility.util import log\n"
                   if marker in text:
