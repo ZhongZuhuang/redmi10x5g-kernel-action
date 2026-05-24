@@ -277,6 +277,7 @@ jobs:
         run: |
           set -euo pipefail
           export PATH="/usr/lib/ccache:$GITHUB_WORKSPACE/toolchains/gcc-arm64/bin:$GITHUB_WORKSPACE/toolchains/gcc-arm/bin:$PATH:$GITHUB_WORKSPACE/toolchains/proton-clang/bin"
+          export PYTHONPATH="$PWD/tools/dct:$PWD/tools/dct/obj:$PWD/tools/dct/utility:${PYTHONPATH:-}"
           CLANG="$GITHUB_WORKSPACE/toolchains/proton-clang/bin/clang"
           LLD="$GITHUB_WORKSPACE/toolchains/proton-clang/bin/ld.lld"
           export KBUILD_BUILD_USER=suhuli
@@ -336,6 +337,7 @@ jobs:
         run: |
           set -euo pipefail
           export PATH="/usr/lib/ccache:$GITHUB_WORKSPACE/toolchains/gcc-arm64/bin:$GITHUB_WORKSPACE/toolchains/gcc-arm/bin:$PATH:$GITHUB_WORKSPACE/toolchains/proton-clang/bin"
+          export PYTHONPATH="$PWD/tools/dct:$PWD/tools/dct/obj:$PWD/tools/dct/utility:${PYTHONPATH:-}"
           CLANG="$GITHUB_WORKSPACE/toolchains/proton-clang/bin/clang"
           LLD="$GITHUB_WORKSPACE/toolchains/proton-clang/bin/ld.lld"
           make -j"$(nproc --all)" O=out \
