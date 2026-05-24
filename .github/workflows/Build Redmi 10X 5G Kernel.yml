@@ -401,6 +401,7 @@ jobs:
             LLVM_IAS=1 \
             CLANG_TRIPLE=aarch64-linux-gnu- \
             GCC_TOOLCHAIN_DIR=/usr/bin/aarch64-linux-gnu- \
+            KCFLAGS="-Wno-error=void-pointer-to-enum-cast" \
             CROSS_COMPILE=aarch64-linux-gnu- \
             CROSS_COMPILE_ARM32=arm-linux-gnueabi- \
             "$DEFCONFIG"
@@ -450,6 +451,7 @@ jobs:
             LLVM_IAS=1 \
             CLANG_TRIPLE=aarch64-linux-gnu- \
             GCC_TOOLCHAIN_DIR=/usr/bin/aarch64-linux-gnu- \
+            KCFLAGS="-Wno-error=void-pointer-to-enum-cast" \
             CROSS_COMPILE=aarch64-linux-gnu- \
             CROSS_COMPILE_ARM32=arm-linux-gnueabi- \
             Image.gz-dtb dtbs
