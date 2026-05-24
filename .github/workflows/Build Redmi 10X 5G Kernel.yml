@@ -146,9 +146,22 @@ jobs:
         working-directory: kernel
         run: |
           set -euo pipefail
-          while IFS= read -r -d '' file; do
-            python3 -m lib2to3 -w "$file" >/dev/null 2>&1 || true
-          done < <(find tools/dct -name '*.py' -print0)
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path("tools/dct/DrvGen.py")
+          text = path.read_text()
+          old = """def usage():
+              print '''"""
+          if old in text:
+              text = text.replace(old, """def usage():
+              print('''""", 1)
+              text = text.replace("""paras        :    parameter for generate wanted file
+          '''""", """paras        :    parameter for generate wanted file
+          ''')""", 1)
+          text = text.replace("except Exception, e:", "except Exception as e:")
+          path.write_text(text)
+          PY
           if grep -n "print '''" tools/dct/DrvGen.py; then
             echo "DrvGen.py was not converted to Python 3" >&2
             exit 1
