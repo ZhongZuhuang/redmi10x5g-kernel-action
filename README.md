@@ -17,7 +17,7 @@
 
 - ReSukiSU: 默认启用。
 - KPM: 默认启用，构建后用 `patches/patch_linux` 注入。
-- SUSFS: 默认尝试集成 `susfs4ksu` 的 kernel-4.14 补丁。
+- SUSFS: ReSukiSU 已包含 SUSFS 侧支持；外部 `susfs4ksu` kernel-4.14 补丁默认关闭，避免旧 MTK 4.14 源码上下文冲突。
 - seccomp: 默认启用 `CONFIG_SECCOMP` 和 `CONFIG_SECCOMP_FILTER`。
 - 零宽字符修复: 默认应用本仓库的 `patches/zero_width_exec_fix_4.14.patch`。
 - AnyKernel3 打包: 自动上传可刷入 zip。
@@ -32,7 +32,7 @@
    - `DEVICE`: `atom`
    - `ENABLE_RESUKISU`: `true`
    - `ENABLE_KPM`: `true`
-   - `ENABLE_SUSFS`: `true`
+   - `ENABLE_SUSFS`: `false`
    - `ENABLE_SECCOMP`: `true`
    - `FIX_ZERO_WIDTH`: `true`
 5. 编译完成后，在 workflow run 的 `Artifacts` 下载：
@@ -41,7 +41,7 @@
 
 ## 注意
 
-- 这是非 GKI 4.14 旧内核，ReSukiSU/SUSFS/KPM 组合对源码兼容性要求高；如果上游 patch 发生变化，第一次编译可能需要根据日志微调补丁。
+- 这是非 GKI 4.14 旧内核，ReSukiSU/KPM 对源码兼容性要求高；外部 SUSFS kernel patch 建议单独分支适配。
 - 默认使用 `atom_user_defconfig`。如果你要给 Redmi 10X Pro 5G / `bomb` 编译，在 workflow 输入里把 `DEVICE` 改为 `bomb`。
 - 刷入前请自行备份 `boot.img`。本仓库只负责编译和打包，不自动刷机。
 

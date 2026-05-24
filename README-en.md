@@ -6,7 +6,7 @@ Features:
 
 - ReSukiSU integration.
 - KPM image patching.
-- SUSFS kernel-4.14 patches.
+- ReSukiSU SUSFS-side support; external SUSFS kernel-4.14 patches are disabled by default for this legacy MTK tree.
 - seccomp config enablement.
 - zero-width UTF-8 exec argument hardening.
 - AnyKernel3 artifact packaging.

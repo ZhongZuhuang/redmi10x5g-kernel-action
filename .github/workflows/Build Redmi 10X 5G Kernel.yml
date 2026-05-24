@@ -23,9 +23,9 @@ on:
         default: true
       ENABLE_SUSFS:
         type: boolean
-        description: "Enable SUSFS kernel-4.14 patches"
+        description: "Apply external SUSFS kernel-4.14 patches; ReSukiSU already includes SUSFS-side support"
         required: true
-        default: true
+        default: false
       ENABLE_SECCOMP:
         type: boolean
         description: "Enable seccomp and seccomp filter"
@@ -140,6 +140,13 @@ jobs:
           else
             curl -LSs "https://raw.githubusercontent.com/ReSukiSU/ReSukiSU/main/kernel/setup.sh" | sh
           fi
+          sed -i '/depends on KSU_MANUAL_HOOK/d' KernelSU/kernel/Kconfig || true
+
+      - name: Convert legacy MTK Python scripts
+        working-directory: kernel
+        run: |
+          set -euo pipefail
+          python3 -m lib2to3 -w tools/dct >/dev/null 2>&1 || true
 
       - name: Apply SUSFS
         if: ${{ inputs.ENABLE_SUSFS == true }}
