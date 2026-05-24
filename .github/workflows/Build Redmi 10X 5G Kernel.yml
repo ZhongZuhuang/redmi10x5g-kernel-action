@@ -161,6 +161,9 @@ jobs:
           ''')""", 1)
           text = text.replace("except Exception, e:", "except Exception as e:")
           path.write_text(text)
+
+          shim = Path("tools/dct/obj/ConfigParser.py")
+          shim.write_text("from configparser import *\n")
           PY
           if grep -n "print '''" tools/dct/DrvGen.py; then
             echo "DrvGen.py was not converted to Python 3" >&2
