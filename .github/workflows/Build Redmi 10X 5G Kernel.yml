@@ -147,26 +147,93 @@ jobs:
         run: |
           set -euo pipefail
           python3 - <<'PY'
+          import ast
+          import re
           from pathlib import Path
 
-          path = Path("tools/dct/DrvGen.py")
-          text = path.read_text()
-          old = """def usage():
-              print '''"""
-          if old in text:
-              text = text.replace(old, """def usage():
-              print('''""", 1)
-              text = text.replace("""paras        :    parameter for generate wanted file
-          '''""", """paras        :    parameter for generate wanted file
-          ''')""", 1)
-          text = text.replace("except Exception, e:", "except Exception as e:")
-          path.write_text(text)
+          def convert(path):
+              text = path.read_text()
+              text = text.replace(
+                  "def usage():\n    print '''",
+                  "def usage():\n    print('''",
+                  1,
+              )
+              text = text.replace(
+                  "paras        :    parameter for generate wanted file\n'''",
+                  "paras        :    parameter for generate wanted file\n''')",
+                  1,
+              )
+              text = text.replace("except Exception, e:", "except Exception as e:")
+              text = re.sub(r"\bcmp\(", "__dct_cmp(", text)
+              text = re.sub(r"\bstring\.atoi\(", "int(", text)
+              text = re.sub(r"^(\s*)print\s+(.+)$", r"\1print(\2)", text, flags=re.M)
+              text = text.replace(".keys()[", ".keys_list()[")
+              path.write_text(text)
+
+          for path in sorted(Path("tools/dct").rglob("*.py")):
+              convert(path)
+
+          drvgen = Path("tools/dct/DrvGen.py")
+          text = drvgen.read_text()
+          text = text.replace(".keys_list()[", ".keys()[")
+          text = text.replace(
+              "def usage():\n    print '''",
+              "def usage():\n    print('''",
+              1,
+          )
+          text = text.replace(
+              "paras        :    parameter for generate wanted file\n'''",
+              "paras        :    parameter for generate wanted file\n''')",
+              1,
+          )
+          text = text.replace(
+              "import os, sys\n",
+              "import os, sys\n\n"
+              "def __dct_cmp(a, b):\n"
+              "    return (a > b) - (a < b)\n\n",
+              1,
+          )
+          drvgen.write_text(text)
+
+          util = Path("tools/dct/utility/util.py")
+          text = util.read_text()
+          text = text.replace("import string\n", "")
+          util.write_text(text)
+
+          chip = Path("tools/dct/obj/ChipObj.py")
+          text = chip.read_text()
+          text = text.replace(".keys_list()[", ".keys()[")
+          text = text.replace("name = para_map.keys()[idx]", "name = list(para_map.keys())[idx]")
+          chip.write_text(text)
+
+          for path in sorted(Path("tools/dct/obj").glob("*.py")):
+              text = path.read_text()
+              if "__dct_cmp(" in text and "def __dct_cmp(a, b):" not in text:
+                  marker = "from utility.util import log\n"
+                  if marker in text:
+                      text = text.replace(
+                          marker,
+                          marker + "\n"
+                          "def __dct_cmp(a, b):\n"
+                          "    return (a > b) - (a < b)\n",
+                          1,
+                      )
+                  else:
+                      text = (
+                          "def __dct_cmp(a, b):\n"
+                          "    return (a > b) - (a < b)\n\n"
+                          + text
+                      )
+                  path.write_text(text)
 
           shim = Path("tools/dct/obj/ConfigParser.py")
           shim.write_text("from configparser import *\n")
+
+          for path in sorted(Path("tools/dct").rglob("*.py")):
+              ast.parse(path.read_text(), filename=str(path))
           PY
-          if grep -n "print '''" tools/dct/DrvGen.py; then
-            echo "DrvGen.py was not converted to Python 3" >&2
+          if grep -R -n -E "^\s*print\s+|except .+,\s*[A-Za-z_][A-Za-z0-9_]*:" tools/dct --include='*.py'; then
+            echo "MTK DCT scripts still contain Python 2 syntax" >&2
             exit 1
           fi
 
