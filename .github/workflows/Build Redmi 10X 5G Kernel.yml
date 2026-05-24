@@ -362,6 +362,24 @@ jobs:
               "enum ttu_flags flags = (enum ttu_flags)(unsigned long)arg;",
           )
           path.write_text(text)
+
+          path = Path("drivers/input/touchscreen/focaltech_touch/focaltech_config.h")
+          if path.exists():
+              text = path.read_text()
+              text = text.replace(
+                  "#define FTS_AUTO_UPGRADE_EN                     1",
+                  "#define FTS_AUTO_UPGRADE_EN                     0",
+              )
+              path.write_text(text)
+
+          for rel in (
+              "drivers/input/touchscreen/focaltech_touch/include/firmware/fw_ft3518_j7.i",
+              "drivers/input/touchscreen/focaltech_touch/include/firmware/fw_sample.i",
+          ):
+              path = Path(rel)
+              path.parent.mkdir(parents=True, exist_ok=True)
+              if not path.exists():
+                  path.write_text("0x00\n")
           PY
 
       - name: Configure kernel
