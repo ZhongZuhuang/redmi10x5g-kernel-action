@@ -148,7 +148,7 @@ jobs:
           set -euo pipefail
           base="https://gitlab.com/simonpunk/susfs4ksu/-/raw/${SUSFS_REF}/kernel_patches"
           curl -fLSs -o /tmp/50_add_susfs_in_kernel-4.14.patch "$base/50_add_susfs_in_kernel-4.14.patch"
-          patch -p1 --forward < /tmp/50_add_susfs_in_kernel-4.14.patch
+          patch -p1 --forward --reject-file=- < /tmp/50_add_susfs_in_kernel-4.14.patch || true
           mkdir -p fs include/linux
           curl -fLSs -o fs/susfs.c "$base/fs/susfs.c"
           curl -fLSs -o fs/sus_su.c "$base/fs/sus_su.c"

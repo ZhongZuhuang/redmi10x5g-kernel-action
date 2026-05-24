@@ -1,0 +1,951 @@
+﻿2026-05-24T14:47:54.4994309Z Current runner version: '2.334.0'
+2026-05-24T14:47:54.5018979Z ##[group]Runner Image Provisioner
+2026-05-24T14:47:54.5019728Z Hosted Compute Agent
+2026-05-24T14:47:54.5020200Z Version: 20260213.493
+2026-05-24T14:47:54.5020802Z Commit: 5c115507f6dd24b8de37d8bbe0bb4509d0cc0fa3
+2026-05-24T14:47:54.5021436Z Build Date: 2026-02-13T00:28:41Z
+2026-05-24T14:47:54.5021995Z Worker ID: {d5ac6d1d-7014-4cda-a09f-aed8c2c4345e}
+2026-05-24T14:47:54.5022640Z Azure Region: westus3
+2026-05-24T14:47:54.5023089Z ##[endgroup]
+2026-05-24T14:47:54.5025198Z ##[group]Operating System
+2026-05-24T14:47:54.5025786Z Ubuntu
+2026-05-24T14:47:54.5026225Z 24.04.4
+2026-05-24T14:47:54.5026630Z LTS
+2026-05-24T14:47:54.5027016Z ##[endgroup]
+2026-05-24T14:47:54.5027455Z ##[group]Runner Image
+2026-05-24T14:47:54.5027895Z Image: ubuntu-24.04
+2026-05-24T14:47:54.5028373Z Version: 20260518.149.1
+2026-05-24T14:47:54.5029456Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260518.149/images/ubuntu/Ubuntu2404-Readme.md
+2026-05-24T14:47:54.5031148Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260518.149
+2026-05-24T14:47:54.5031910Z ##[endgroup]
+2026-05-24T14:47:54.5032868Z ##[group]GITHUB_TOKEN Permissions
+2026-05-24T14:47:54.5035315Z Actions: read
+2026-05-24T14:47:54.5035785Z Contents: read
+2026-05-24T14:47:54.5036214Z Metadata: read
+2026-05-24T14:47:54.5036681Z ##[endgroup]
+2026-05-24T14:47:54.5038800Z Secret source: Actions
+2026-05-24T14:47:54.5039755Z Prepare workflow directory
+2026-05-24T14:47:54.5621564Z Prepare all required actions
+2026-05-24T14:47:54.5661038Z Getting action download info
+2026-05-24T14:47:55.0748164Z Download action repository 'actions/checkout@v4' (SHA:34e114876b0b11c390a56381ad16ebd13914f8d5)
+2026-05-24T14:47:55.2146827Z Download action repository 'easimon/maximize-build-space@master' (SHA:c28619d8999a147d5e09c1199f84ff6af6ad5794)
+2026-05-24T14:47:55.4609097Z Download action repository 'actions/cache@v4' (SHA:0057852bfaa89a56745cba8c7296529d2fc39830)
+2026-05-24T14:47:55.5425462Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-05-24T14:47:55.7874656Z Complete job name: atom ReSukiSU KPM SUSFS
+2026-05-24T14:47:55.8740945Z ##[group]Run actions/checkout@v4
+2026-05-24T14:47:55.8742099Z with:
+2026-05-24T14:47:55.8742859Z   repository: suhuli/redmi10x5g-kernel-action
+2026-05-24T14:47:55.8744293Z   token: ***
+2026-05-24T14:47:55.8744950Z   ssh-strict: true
+2026-05-24T14:47:55.8745622Z   ssh-user: git
+2026-05-24T14:47:55.8746312Z   persist-credentials: true
+2026-05-24T14:47:55.8747076Z   clean: true
+2026-05-24T14:47:55.8747776Z   sparse-checkout-cone-mode: true
+2026-05-24T14:47:55.8748614Z   fetch-depth: 1
+2026-05-24T14:47:55.8749290Z   fetch-tags: false
+2026-05-24T14:47:55.8749980Z   show-progress: true
+2026-05-24T14:47:55.8750663Z   lfs: false
+2026-05-24T14:47:55.8751288Z   submodules: false
+2026-05-24T14:47:55.8751980Z   set-safe-directory: true
+2026-05-24T14:47:55.8752928Z env:
+2026-05-24T14:47:55.8753506Z   ARCH: arm64
+2026-05-24T14:47:55.8754264Z   DEVICE: atom
+2026-05-24T14:47:55.8755421Z   CCACHE_DIR: /home/runner/work/redmi10x5g-kernel-action/redmi10x5g-kernel-action/.ccache
+2026-05-24T14:47:55.8756862Z   CCACHE_MAXSIZE: 6G
+2026-05-24T14:47:55.8757887Z   KERNEL_SOURCE: https://github.com/MiCode/Xiaomi_Kernel_OpenSource.git
+2026-05-24T14:47:55.8759089Z   KERNEL_BRANCH: bomb-q-oss
+2026-05-24T14:47:55.8759846Z   SUSFS_REF: kernel-4.14
+2026-05-24T14:47:55.8760573Z ##[endgroup]
+2026-05-24T14:47:55.9937625Z Syncing repository: suhuli/redmi10x5g-kernel-action
+2026-05-24T14:47:55.9940297Z ##[group]Getting Git version info
+2026-05-24T14:47:55.9941724Z Working directory is '/home/runner/work/redmi10x5g-kernel-action/redmi10x5g-kernel-action'
+2026-05-24T14:47:55.9943951Z [command]/usr/bin/git version
+2026-05-24T14:47:56.0001021Z git version 2.54.0
+2026-05-24T14:47:56.0039286Z ##[endgroup]
+2026-05-24T14:47:56.0054548Z Temporarily overriding HOME='/home/runner/work/_temp/68f78718-5409-4629-9c35-37eda60d6fd4' before making global git config changes
+2026-05-24T14:47:56.0057413Z Adding repository directory to the temporary git global config as a safe directory
+2026-05-24T14:47:56.0070561Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/redmi10x5g-kernel-action/redmi10x5g-kernel-action
+2026-05-24T14:47:56.0114715Z Deleting the contents of '/home/runner/work/redmi10x5g-kernel-action/redmi10x5g-kernel-action'
+2026-05-24T14:47:56.0119299Z ##[group]Initializing the repository
+2026-05-24T14:47:56.0124088Z [command]/usr/bin/git init /home/runner/work/redmi10x5g-kernel-action/redmi10x5g-kernel-action
+2026-05-24T14:47:56.0211131Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-05-24T14:47:56.0212859Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-05-24T14:47:56.0215326Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-05-24T14:47:56.0216547Z hint: call:
+2026-05-24T14:47:56.0217155Z hint:
+2026-05-24T14:47:56.0218011Z hint: 	git config --global init.defaultBranch <name>
+2026-05-24T14:47:56.0219146Z hint:
+2026-05-24T14:47:56.0220092Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-05-24T14:47:56.0221601Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-05-24T14:47:56.0222802Z hint:
+2026-05-24T14:47:56.0223422Z hint: 	git branch -m <name>
+2026-05-24T14:47:56.0224488Z hint:
+2026-05-24T14:47:56.0225626Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-05-24T14:47:56.0227801Z Initialized empty Git repository in /home/runner/work/redmi10x5g-kernel-action/redmi10x5g-kernel-action/.git/
+2026-05-24T14:47:56.0231150Z [command]/usr/bin/git remote add origin https://github.com/suhuli/redmi10x5g-kernel-action
+2026-05-24T14:47:56.0267939Z ##[endgroup]
+2026-05-24T14:47:56.0269104Z ##[group]Disabling automatic garbage collection
+2026-05-24T14:47:56.0271975Z [command]/usr/bin/git config --local gc.auto 0
+2026-05-24T14:47:56.0302625Z ##[endgroup]
+2026-05-24T14:47:56.0303900Z ##[group]Setting up auth
+2026-05-24T14:47:56.0309520Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-05-24T14:47:56.0349941Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-05-24T14:47:56.0843959Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-05-24T14:47:56.0877892Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-05-24T14:47:56.1088646Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-05-24T14:47:56.1127584Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-05-24T14:47:56.1344452Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-05-24T14:47:56.1379074Z ##[endgroup]
+2026-05-24T14:47:56.1381321Z ##[group]Fetching the repository
+2026-05-24T14:47:56.1389411Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +56512b0632c516c3b49ca6d9324b67fb6eacf53f:refs/remotes/origin/main
+2026-05-24T14:47:57.5435897Z From https://github.com/suhuli/redmi10x5g-kernel-action
+2026-05-24T14:47:57.5437400Z  * [new ref]         56512b0632c516c3b49ca6d9324b67fb6eacf53f -> origin/main
+2026-05-24T14:47:57.5467209Z ##[endgroup]
+2026-05-24T14:47:57.5467756Z ##[group]Determining the checkout info
+2026-05-24T14:47:57.5468605Z ##[endgroup]
+2026-05-24T14:47:57.5473873Z [command]/usr/bin/git sparse-checkout disable
+2026-05-24T14:47:57.5511893Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-05-24T14:47:57.5535448Z ##[group]Checking out the ref
+2026-05-24T14:47:57.5539993Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-05-24T14:47:57.5978338Z Switched to a new branch 'main'
+2026-05-24T14:47:57.5979113Z branch 'main' set up to track 'origin/main'.
+2026-05-24T14:47:57.6020577Z ##[endgroup]
+2026-05-24T14:47:57.6024600Z [command]/usr/bin/git log -1 --format=%H
+2026-05-24T14:47:57.6045336Z 56512b0632c516c3b49ca6d9324b67fb6eacf53f
+2026-05-24T14:47:57.6339831Z ##[group]Run easimon/maximize-build-space@master
+2026-05-24T14:47:57.6340314Z with:
+2026-05-24T14:47:57.6340650Z   root-reserve-mb: 8192
+2026-05-24T14:47:57.6341003Z   temp-reserve-mb: 2048
+2026-05-24T14:47:57.6341359Z   swap-size-mb: 4096
+2026-05-24T14:47:57.6341705Z   remove-dotnet: true
+2026-05-24T14:47:57.6342049Z   remove-android: true
+2026-05-24T14:47:57.6342398Z   remove-haskell: true
+2026-05-24T14:47:57.6342738Z   remove-codeql: true
+2026-05-24T14:47:57.6343094Z   overprovision-lvm: false
+2026-05-24T14:47:57.6343498Z   build-mount-path-ownership: runner:runner
+2026-05-24T14:47:57.6344237Z   pv-loop-path: /pv.img
+2026-05-24T14:47:57.6344627Z   tmp-pv-loop-path: /mnt/tmp-pv.img
+2026-05-24T14:47:57.6345041Z   remove-docker-images: false
+2026-05-24T14:47:57.6345408Z env:
+2026-05-24T14:47:57.6345716Z   ARCH: arm64
+2026-05-24T14:47:57.6346047Z   DEVICE: atom
+2026-05-24T14:47:57.6346550Z   CCACHE_DIR: /home/runner/work/redmi10x5g-kernel-action/redmi10x5g-kernel-action/.ccache
+2026-05-24T14:47:57.6347282Z   CCACHE_MAXSIZE: 6G
+2026-05-24T14:47:57.6347776Z   KERNEL_SOURCE: https://github.com/MiCode/Xiaomi_Kernel_OpenSource.git
+2026-05-24T14:47:57.6348278Z   KERNEL_BRANCH: bomb-q-oss
+2026-05-24T14:47:57.6348622Z   SUSFS_REF: kernel-4.14
+2026-05-24T14:47:57.6348955Z ##[endgroup]
+2026-05-24T14:47:57.6446407Z ##[group]Run echo "Memory and swap:"
+2026-05-24T14:47:57.6447038Z [36;1mecho "Memory and swap:"[0m
+2026-05-24T14:47:57.6447470Z [36;1msudo free -h[0m
+2026-05-24T14:47:57.6447830Z [36;1mecho[0m
+2026-05-24T14:47:57.6448170Z [36;1msudo swapon --show[0m
+2026-05-24T14:47:57.6448569Z [36;1mecho[0m
+2026-05-24T14:47:57.6448866Z [36;1m[0m
+2026-05-24T14:47:57.6449187Z [36;1mecho "Available storage:"[0m
+2026-05-24T14:47:57.6449580Z [36;1msudo df -h[0m
+2026-05-24T14:47:57.6449909Z [36;1mecho[0m
+2026-05-24T14:47:57.6478487Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-05-24T14:47:57.6478973Z env:
+2026-05-24T14:47:57.6479276Z   ARCH: arm64
+2026-05-24T14:47:57.6479600Z   DEVICE: atom
+2026-05-24T14:47:57.6480075Z   CCACHE_DIR: /home/runner/work/redmi10x5g-kernel-action/redmi10x5g-kernel-action/.ccache
+2026-05-24T14:47:57.6480613Z   CCACHE_MAXSIZE: 6G
+2026-05-24T14:47:57.6481071Z   KERNEL_SOURCE: https://github.com/MiCode/Xiaomi_Kernel_OpenSource.git
+2026-05-24T14:47:57.6481548Z   KERNEL_BRANCH: bomb-q-oss
+2026-05-24T14:47:57.6481885Z   SUSFS_REF: kernel-4.14
+2026-05-24T14:47:57.6482218Z ##[endgroup]
+2026-05-24T14:47:57.6558174Z Memory and swap:
+2026-05-24T14:47:57.6619410Z                total        used        free      shared  buff/cache   available
+2026-05-24T14:47:57.6620355Z Mem:            15Gi       898Mi        13Gi        42Mi       1.5Gi        14Gi
+2026-05-24T14:47:57.6621046Z Swap:          3.0Gi          0B       3.0Gi
+2026-05-24T14:47:57.6626240Z 
+2026-05-24T14:47:57.6683873Z NAME      TYPE SIZE USED PRIO
+2026-05-24T14:47:57.6684581Z /swapfile file   3G   0B   -2
+2026-05-24T14:47:57.6689939Z 
+2026-05-24T14:47:57.6690653Z Available storage:
+2026-05-24T14:47:57.6856443Z Filesystem      Size  Used Avail Use% Mounted on
+2026-05-24T14:47:57.6857633Z /dev/root       145G   55G   90G  38% /
+2026-05-24T14:47:57.6858417Z tmpfs           7.9G   84K  7.9G   1% /dev/shm
+2026-05-24T14:47:57.6859072Z tmpfs           3.2G 1020K  3.2G   1% /run
+2026-05-24T14:47:57.6859574Z tmpfs           5.0M     0  5.0M   0% /run/lock
+2026-05-24T14:47:57.6860097Z efivarfs        128M   32K  128M   1% /sys/firmware/efi/efivars
+2026-05-24T14:47:57.6860577Z /dev/sda16      881M   64M  756M   8% /boot
+2026-05-24T14:47:57.6860996Z /dev/sda15      105M  6.2M   99M   6% /boot/efi
+2026-05-24T14:47:57.6861698Z tmpfs           1.6G   12K  1.6G   1% /run/user/1001
+2026-05-24T14:47:57.6864909Z 
+2026-05-24T14:47:57.6909532Z ##[group]Run set -euo pipefail
+2026-05-24T14:47:57.6910097Z [36;1mset -euo pipefail[0m
+2026-05-24T14:47:57.6910428Z [36;1m[0m
+2026-05-24T14:47:57.6910720Z [36;1mBUILD_MOUNT_PATH=""[0m
+2026-05-24T14:47:57.6911091Z [36;1mif [[ -z "${BUILD_MOUNT_PATH}" ]]; then[0m
+2026-05-24T14:47:57.6911710Z [36;1m  BUILD_MOUNT_PATH="${GITHUB_WORKSPACE}"[0m
+2026-05-24T14:47:57.6912082Z [36;1mfi[0m
+2026-05-24T14:47:57.6912352Z [36;1m[0m
+2026-05-24T14:47:57.6912738Z [36;1mecho "Arguments:"[0m
+2026-05-24T14:47:57.6913058Z [36;1mecho[0m
+2026-05-24T14:47:57.6913366Z [36;1mecho "  Root reserve:      8192 MiB"[0m
+2026-05-24T14:47:57.6913952Z [36;1mecho "  Temp reserve:      2048 MiB"[0m
+2026-05-24T14:47:57.6914432Z [36;1mecho "  Swap space:        4096 MiB"[0m
+2026-05-24T14:47:57.6914822Z [36;1mecho "  Overprovision LVM: false"[0m
+2026-05-24T14:47:57.6915261Z [36;1mecho "  Mount path:        ${BUILD_MOUNT_PATH}"[0m
+2026-05-24T14:47:57.6915682Z [36;1mecho "  Root PV loop path: /pv.img"[0m
+2026-05-24T14:47:57.6916099Z [36;1mecho "  Temp PV loop path: /mnt/tmp-pv.img"[0m
+2026-05-24T14:47:57.6916498Z [36;1mecho -n "  Removing:     "[0m
+2026-05-24T14:47:57.6916862Z [36;1mif [[ true == 'true' ]]; then[0m
+2026-05-24T14:47:57.6917211Z [36;1m  echo -n "dotnet "[0m
+2026-05-24T14:47:57.6917539Z [36;1mfi[0m
+2026-05-24T14:47:57.6917999Z [36;1mif [[ true == 'true' ]]; then[0m
+2026-05-24T14:47:57.6918385Z [36;1m  echo -n "android "[0m
+2026-05-24T14:47:57.6918708Z [36;1mfi[0m
+2026-05-24T14:47:57.6918995Z [36;1mif [[ true == 'true' ]]; then[0m
+2026-05-24T14:47:57.6919348Z [36;1m  echo -n "haskell "[0m
+2026-05-24T14:47:57.6919660Z [36;1mfi[0m
+2026-05-24T14:47:57.6919949Z [36;1mif [[ true == 'true' ]]; then[0m
+2026-05-24T14:47:57.6920293Z [36;1m  echo -n "codeql "[0m
+2026-05-24T14:47:57.6920625Z [36;1mfi[0m
+2026-05-24T14:47:57.6920924Z [36;1mif [[ false == 'true' ]]; then[0m
+2026-05-24T14:47:57.6921284Z [36;1m  echo -n "docker "[0m
+2026-05-24T14:47:57.6921603Z [36;1mfi[0m
+2026-05-24T14:47:57.6921872Z [36;1mecho[0m
+2026-05-24T14:47:57.6922155Z [36;1m[0m
+2026-05-24T14:47:57.6922536Z [36;1m# store owner of $GITHUB_WORKSPACE in case the action deletes it[0m
+2026-05-24T14:47:57.6923076Z [36;1mWORKSPACE_OWNER="$(stat -c '%U:%G' "${GITHUB_WORKSPACE}")"[0m
+2026-05-24T14:47:57.6923505Z [36;1m[0m
+2026-05-24T14:47:57.6923924Z [36;1m# ensure mount path exists before the action[0m
+2026-05-24T14:47:57.6924347Z [36;1msudo mkdir -p "${BUILD_MOUNT_PATH}"[0m
+2026-05-24T14:47:57.6925087Z [36;1msudo find "${BUILD_MOUNT_PATH}" -maxdepth 0 ! -empty -exec echo 'WARNING: directory [{}] is not empty, data loss might occur. Content:' \; -exec ls -al "{}" \;[0m
+2026-05-24T14:47:57.6925794Z [36;1m[0m
+2026-05-24T14:47:57.6926116Z [36;1mecho "Removing unwanted software... "[0m
+2026-05-24T14:47:57.6926507Z [36;1mif [[ true == 'true' ]]; then[0m
+2026-05-24T14:47:57.6926876Z [36;1m  sudo rm -rf /usr/share/dotnet[0m
+2026-05-24T14:47:57.6927222Z [36;1mfi[0m
+2026-05-24T14:47:57.6927508Z [36;1mif [[ true == 'true' ]]; then[0m
+2026-05-24T14:47:57.6927872Z [36;1m  sudo rm -rf /usr/local/lib/android[0m
+2026-05-24T14:47:57.6928225Z [36;1mfi[0m
+2026-05-24T14:47:57.6928504Z [36;1mif [[ true == 'true' ]]; then[0m
+2026-05-24T14:47:57.6928855Z [36;1m  sudo rm -rf /opt/ghc[0m
+2026-05-24T14:47:57.6929184Z [36;1mfi[0m
+2026-05-24T14:47:57.6929474Z [36;1mif [[ true == 'true' ]]; then[0m
+2026-05-24T14:47:57.6929883Z [36;1m  sudo rm -rf /opt/hostedtoolcache/CodeQL[0m
+2026-05-24T14:47:57.6930256Z [36;1mfi[0m
+2026-05-24T14:47:57.6930560Z [36;1mif [[ false == 'true' ]]; then[0m
+2026-05-24T14:47:57.6930944Z [36;1m  sudo docker image prune --all --force[0m
+2026-05-24T14:47:57.6931318Z [36;1mfi[0m
+2026-05-24T14:47:57.6931596Z [36;1mecho "... done"[0m
+2026-05-24T14:47:57.6931902Z [36;1m[0m
+2026-05-24T14:47:57.6932181Z [36;1mVG_NAME=buildvg[0m
+2026-05-24T14:47:57.6932660Z [36;1m[0m
+2026-05-24T14:47:57.6933025Z [36;1m# github runners have an active swap file in /mnt/swapfile[0m
+2026-05-24T14:47:57.6933594Z [36;1m# we want to reuse the temp disk, so first unmount swap and clean the temp disk[0m
+2026-05-24T14:47:57.6934203Z [36;1mecho "Unmounting and removing swap file."[0m
+2026-05-24T14:47:57.6934591Z [36;1msudo swapoff -a[0m
+2026-05-24T14:47:57.6935055Z [36;1msudo rm -f /mnt/swapfile[0m
+2026-05-24T14:47:57.6935389Z [36;1m[0m
+2026-05-24T14:47:57.6935690Z [36;1mecho "Creating LVM Volume."[0m
+2026-05-24T14:47:57.6936060Z [36;1mecho "  Creating LVM PV on root fs."[0m
+2026-05-24T14:47:57.6936451Z [36;1m# create loop pv image on root fs[0m
+2026-05-24T14:47:57.6936842Z [36;1mROOT_RESERVE_KB=$(expr 8192 \* 1024)[0m
+2026-05-24T14:47:57.6937300Z [36;1mROOT_FREE_KB=$(df --block-size=1024 --output=avail / | tail -1)[0m
+2026-05-24T14:47:57.6937823Z [36;1mROOT_LVM_SIZE_KB=$(expr $ROOT_FREE_KB - $ROOT_RESERVE_KB)[0m
+2026-05-24T14:47:57.6938308Z [36;1mROOT_LVM_SIZE_BYTES=$(expr $ROOT_LVM_SIZE_KB \* 1024)[0m
+2026-05-24T14:47:57.6938857Z [36;1msudo touch "/pv.img" && sudo fallocate -z -l "${ROOT_LVM_SIZE_BYTES}" "/pv.img"[0m
+2026-05-24T14:47:57.6939435Z [36;1mexport ROOT_LOOP_DEV=$(sudo losetup --find --show "/pv.img")[0m
+2026-05-24T14:47:57.6939909Z [36;1msudo pvcreate -f "${ROOT_LOOP_DEV}"[0m
+2026-05-24T14:47:57.6940265Z [36;1m[0m
+2026-05-24T14:47:57.6940556Z [36;1m# create pv on temp disk[0m
+2026-05-24T14:47:57.6940937Z [36;1mecho "  Creating LVM PV on temp fs."[0m
+2026-05-24T14:47:57.6941319Z [36;1mTMP_RESERVE_KB=$(expr 2048 \* 1024)[0m
+2026-05-24T14:47:57.6941771Z [36;1mTMP_FREE_KB=$(df --block-size=1024 --output=avail /mnt | tail -1)[0m
+2026-05-24T14:47:57.6942283Z [36;1mTMP_LVM_SIZE_KB=$(expr $TMP_FREE_KB - $TMP_RESERVE_KB)[0m
+2026-05-24T14:47:57.6942768Z [36;1mTMP_LVM_SIZE_BYTES=$(expr $TMP_LVM_SIZE_KB \* 1024)[0m
+2026-05-24T14:47:57.6943359Z [36;1msudo touch "/mnt/tmp-pv.img" && sudo fallocate -z -l "${TMP_LVM_SIZE_BYTES}" "/mnt/tmp-pv.img"[0m
+2026-05-24T14:47:57.6944275Z [36;1mexport TMP_LOOP_DEV=$(sudo losetup --find --show "/mnt/tmp-pv.img")[0m
+2026-05-24T14:47:57.6944790Z [36;1msudo pvcreate -f "${TMP_LOOP_DEV}"[0m
+2026-05-24T14:47:57.6945144Z [36;1m[0m
+2026-05-24T14:47:57.6945468Z [36;1m# create volume group from these pvs[0m
+2026-05-24T14:47:57.6945935Z [36;1msudo vgcreate "${VG_NAME}" "${TMP_LOOP_DEV}" "${ROOT_LOOP_DEV}"[0m
+2026-05-24T14:47:57.6946367Z [36;1m[0m
+2026-05-24T14:47:57.6946663Z [36;1mecho "Recreating swap"[0m
+2026-05-24T14:47:57.6947014Z [36;1m# create and activate swap[0m
+2026-05-24T14:47:57.6947416Z [36;1msudo lvcreate -L "4096M" -n swap "${VG_NAME}"[0m
+2026-05-24T14:47:57.6947843Z [36;1msudo mkswap "/dev/mapper/${VG_NAME}-swap"[0m
+2026-05-24T14:47:57.6948271Z [36;1msudo swapon "/dev/mapper/${VG_NAME}-swap"[0m
+2026-05-24T14:47:57.6948627Z [36;1m[0m
+2026-05-24T14:47:57.6948916Z [36;1mecho "Creating build volume"[0m
+2026-05-24T14:47:57.6949280Z [36;1m# create and mount build volume[0m
+2026-05-24T14:47:57.6949706Z [36;1msudo lvcreate -l 100%FREE -n buildlv "${VG_NAME}"[0m
+2026-05-24T14:47:57.6950115Z [36;1mif [[ false == 'true' ]]; then[0m
+2026-05-24T14:47:57.6950532Z [36;1m  sudo mkfs.ext4 -m0 "/dev/mapper/${VG_NAME}-buildlv"[0m
+2026-05-24T14:47:57.6950932Z [36;1melse[0m
+2026-05-24T14:47:57.6951313Z [36;1m  sudo mkfs.ext4 -Enodiscard -m0 "/dev/mapper/${VG_NAME}-buildlv"[0m
+2026-05-24T14:47:57.6951748Z [36;1mfi[0m
+2026-05-24T14:47:57.6952128Z [36;1msudo mount "/dev/mapper/${VG_NAME}-buildlv" "${BUILD_MOUNT_PATH}"[0m
+2026-05-24T14:47:57.6952632Z [36;1msudo chown -R "runner:runner" "${BUILD_MOUNT_PATH}"[0m
+2026-05-24T14:47:57.6953033Z [36;1m[0m
+2026-05-24T14:47:57.6953463Z [36;1m# if build mount path is a parent of $GITHUB_WORKSPACE, and has been deleted, recreate it[0m
+2026-05-24T14:47:57.6955020Z [36;1mif [[ ! -d "${GITHUB_WORKSPACE}" ]]; then[0m
+2026-05-24T14:47:57.6955438Z [36;1m  sudo mkdir -p "${GITHUB_WORKSPACE}"[0m
+2026-05-24T14:47:57.6955892Z [36;1m  sudo chown -R "${WORKSPACE_OWNER}" "${GITHUB_WORKSPACE}"[0m
+2026-05-24T14:47:57.6956485Z [36;1mfi[0m
+2026-05-24T14:47:57.6980429Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-05-24T14:47:57.6980888Z env:
+2026-05-24T14:47:57.6981169Z   ARCH: arm64
+2026-05-24T14:47:57.6981463Z   DEVICE: atom
+2026-05-24T14:47:57.6981945Z   CCACHE_DIR: /home/runner/work/redmi10x5g-kernel-action/redmi10x5g-kernel-action/.ccache
+2026-05-24T14:47:57.6982597Z   CCACHE_MAXSIZE: 6G
+2026-05-24T14:47:57.6983067Z   KERNEL_SOURCE: https://github.com/MiCode/Xiaomi_Kernel_OpenSource.git
+2026-05-24T14:47:57.6983530Z   KERNEL_BRANCH: bomb-q-oss
+2026-05-24T14:47:57.6984081Z   SUSFS_REF: kernel-4.14
+2026-05-24T14:47:57.6984408Z ##[endgroup]
+2026-05-24T14:47:57.7029929Z Arguments:
+2026-05-24T14:47:57.7030296Z 
+2026-05-24T14:47:57.7030542Z   Root reserve:      8192 MiB
+2026-05-24T14:47:57.7031056Z   Temp reserve:      2048 MiB
+2026-05-24T14:47:57.7031447Z   Swap space:        4096 MiB
+2026-05-24T14:47:57.7031823Z   Overprovision LVM: false
+2026-05-24T14:47:57.7032442Z   Mount path:        /home/runner/work/redmi10x5g-kernel-action/redmi10x5g-kernel-action
+2026-05-24T14:47:57.7032984Z   Root PV loop path: /pv.img
+2026-05-24T14:47:57.7033354Z   Temp PV loop path: /mnt/tmp-pv.img
+2026-05-24T14:47:57.7033966Z   Removing:     dotnet android haskell codeql 
+2026-05-24T14:47:57.7169870Z WARNING: directory [/home/runner/work/redmi10x5g-kernel-action/redmi10x5g-kernel-action] is not empty, data loss might occur. Content:
+2026-05-24T14:47:57.7180447Z total 48
+2026-05-24T14:47:57.7181050Z drwxr-xr-x 6 runner runner 4096 May 24 14:47 .
+2026-05-24T14:47:57.7181542Z drwxr-xr-x 3 runner runner 4096 May 24 14:47 ..
+2026-05-24T14:47:57.7182025Z drwxr-xr-x 7 runner runner 4096 May 24 14:47 .git
+2026-05-24T14:47:57.7182709Z drwxr-xr-x 3 runner runner 4096 May 24 14:47 .github
+2026-05-24T14:47:57.7183673Z -rw-r--r-- 1 runner runner  236 May 24 14:47 FILE.md
+2026-05-24T14:47:57.7184843Z -rw-r--r-- 1 runner runner 1367 May 24 14:47 LICENSE
+2026-05-24T14:47:57.7185677Z -rw-r--r-- 1 runner runner  448 May 24 14:47 README-en.md
+2026-05-24T14:47:57.7186424Z -rw-r--r-- 1 runner runner 2098 May 24 14:47 README.md
+2026-05-24T14:47:57.7187120Z -rw-r--r-- 1 runner runner 4154 May 24 14:47 ZRAM.zip
+2026-05-24T14:47:57.7187801Z drwxr-xr-x 2 runner runner 4096 May 24 14:47 patches
+2026-05-24T14:47:57.7188522Z drwxr-xr-x 2 runner runner 4096 May 24 14:47 pic
+2026-05-24T14:47:57.7192750Z Removing unwanted software... 
+2026-05-24T14:48:15.1669762Z ... done
+2026-05-24T14:48:15.1670333Z Unmounting and removing swap file.
+2026-05-24T14:48:15.1976534Z Creating LVM Volume.
+2026-05-24T14:48:15.1977022Z   Creating LVM PV on root fs.
+2026-05-24T14:48:15.5026647Z   Physical volume "/dev/loop0" successfully created.
+2026-05-24T14:48:15.5150675Z   Creating LVM PV on temp fs.
+2026-05-24T14:48:15.6126571Z   Physical volume "/dev/loop1" successfully created.
+2026-05-24T14:48:15.6475806Z   Volume group "buildvg" successfully created
+2026-05-24T14:48:15.6610279Z Recreating swap
+2026-05-24T14:48:15.7116745Z   Logical volume "swap" created.
+2026-05-24T14:48:15.7369919Z Setting up swapspace version 1, size = 4 GiB (4294963200 bytes)
+2026-05-24T14:48:15.7379409Z no label, UUID=225ead55-fa8c-47b9-801b-078adafee992
+2026-05-24T14:48:15.7481689Z Creating build volume
+2026-05-24T14:48:15.7712491Z   Logical volume "buildlv" created.
+2026-05-24T14:48:15.7931407Z mke2fs 1.47.0 (5-Feb-2023)
+2026-05-24T14:48:15.7944515Z Creating filesystem with 26271744 4k blocks and 6569984 inodes
+2026-05-24T14:48:15.7945144Z Filesystem UUID: f0bc35ad-ac41-4cbe-888e-8b782ec0763b
+2026-05-24T14:48:15.7945637Z Superblock backups stored on blocks: 
+2026-05-24T14:48:15.7946153Z 	32768, 98304, 163840, 229376, 294912, 819200, 884736, 1605632, 2654208, 
+2026-05-24T14:48:15.7946715Z 	4096000, 7962624, 11239424, 20480000, 23887872
+2026-05-24T14:48:15.7947018Z 
+2026-05-24T14:48:15.7952170Z Allocating group tables:   0/802       done                            
+2026-05-24T14:48:15.7953333Z Writing inode tables:   0/802       done                            
+2026-05-24T14:48:15.7990096Z Creating journal (131072 blocks): done
+2026-05-24T14:48:15.8105762Z Writing superblocks and filesystem accounting information:   0/802       done
+2026-05-24T14:48:15.8106500Z 
+2026-05-24T14:48:15.8322631Z ##[group]Run echo "Memory and swap:"
+2026-05-24T14:48:15.8322962Z [36;1mecho "Memory and swap:"[0m
+2026-05-24T14:48:15.8323349Z [36;1msudo free -h[0m
+2026-05-24T14:48:15.8323571Z [36;1mecho[0m
+2026-05-24T14:48:15.8324348Z [36;1msudo swapon --show[0m
+2026-05-24T14:48:15.8324558Z [36;1mecho[0m
+2026-05-24T14:48:15.8324784Z [36;1m[0m
+2026-05-24T14:48:15.8324963Z [36;1mecho "Available storage:"[0m
+2026-05-24T14:48:15.8325194Z [36;1msudo df -h[0m
+2026-05-24T14:48:15.8345638Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-05-24T14:48:15.8345950Z env:
+2026-05-24T14:48:15.8346131Z   ARCH: arm64
+2026-05-24T14:48:15.8346304Z   DEVICE: atom
+2026-05-24T14:48:15.8346649Z   CCACHE_DIR: /home/runner/work/redmi10x5g-kernel-action/redmi10x5g-kernel-action/.ccache
+2026-05-24T14:48:15.8347065Z   CCACHE_MAXSIZE: 6G
+2026-05-24T14:48:15.8347417Z   KERNEL_SOURCE: https://github.com/MiCode/Xiaomi_Kernel_OpenSource.git
+2026-05-24T14:48:15.8347890Z   KERNEL_BRANCH: bomb-q-oss
+2026-05-24T14:48:15.8348108Z   SUSFS_REF: kernel-4.14
+2026-05-24T14:48:15.8348320Z ##[endgroup]
+2026-05-24T14:48:15.8387343Z Memory and swap:
+2026-05-24T14:48:15.8445944Z                total        used        free      shared  buff/cache   available
+2026-05-24T14:48:15.8446638Z Mem:            15Gi       917Mi        13Gi        45Mi       1.9Gi        14Gi
+2026-05-24T14:48:15.8447238Z Swap:          4.0Gi          0B       4.0Gi
+2026-05-24T14:48:15.8453879Z 
+2026-05-24T14:48:15.8510689Z NAME      TYPE      SIZE USED PRIO
+2026-05-24T14:48:15.8511177Z /dev/dm-0 partition   4G   0B   -2
+2026-05-24T14:48:15.8518862Z 
+2026-05-24T14:48:15.8519448Z Available storage:
+2026-05-24T14:48:15.8574098Z Filesystem                   Size  Used Avail Use% Mounted on
+2026-05-24T14:48:15.8574686Z /dev/root                    145G  143G  2.0G  99% /
+2026-05-24T14:48:15.8575173Z tmpfs                        7.9G   84K  7.9G   1% /dev/shm
+2026-05-24T14:48:15.8575624Z tmpfs                        3.2G  1.1M  3.2G   1% /run
+2026-05-24T14:48:15.8575916Z tmpfs                        5.0M     0  5.0M   0% /run/lock
+2026-05-24T14:48:15.8576263Z efivarfs                     128M   32K  128M   1% /sys/firmware/efi/efivars
+2026-05-24T14:48:15.8576600Z /dev/sda16                   881M   64M  756M   8% /boot
+2026-05-24T14:48:15.8576902Z /dev/sda15                   105M  6.2M   99M   6% /boot/efi
+2026-05-24T14:48:15.8577199Z tmpfs                        1.6G   12K  1.6G   1% /run/user/1001
+2026-05-24T14:48:15.8577711Z /dev/mapper/buildvg-buildlv   99G   24K   99G   1% /home/runner/work/redmi10x5g-kernel-action/redmi10x5g-kernel-action
+2026-05-24T14:48:15.8619196Z ##[group]Run sudo apt-get update
+2026-05-24T14:48:15.8619483Z [36;1msudo apt-get update[0m
+2026-05-24T14:48:15.8619741Z [36;1msudo apt-get install -y \[0m
+2026-05-24T14:48:15.8620063Z [36;1m  bc bison build-essential ccache curl flex git jq libelf-dev \[0m
+2026-05-24T14:48:15.8620449Z [36;1m  libssl-dev lld llvm make python3 unzip wget zip[0m
+2026-05-24T14:48:15.8641357Z shell: /usr/bin/bash -e {0}
+2026-05-24T14:48:15.8641606Z env:
+2026-05-24T14:48:15.8641785Z   ARCH: arm64
+2026-05-24T14:48:15.8641957Z   DEVICE: atom
+2026-05-24T14:48:15.8642314Z   CCACHE_DIR: /home/runner/work/redmi10x5g-kernel-action/redmi10x5g-kernel-action/.ccache
+2026-05-24T14:48:15.8642706Z   CCACHE_MAXSIZE: 6G
+2026-05-24T14:48:15.8643067Z   KERNEL_SOURCE: https://github.com/MiCode/Xiaomi_Kernel_OpenSource.git
+2026-05-24T14:48:15.8643406Z   KERNEL_BRANCH: bomb-q-oss
+2026-05-24T14:48:15.8643619Z   SUSFS_REF: kernel-4.14
+2026-05-24T14:48:15.8644049Z ##[endgroup]
+2026-05-24T14:48:15.9365162Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+2026-05-24T14:48:15.9811344Z Hit:6 https://packages.microsoft.com/repos/azure-cli noble InRelease
+2026-05-24T14:48:15.9829829Z Get:7 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease [3600 B]
+2026-05-24T14:48:16.0582429Z Get:8 https://dl.google.com/linux/chrome-stable/deb stable InRelease [1825 B]
+2026-05-24T14:48:16.0790695Z Get:9 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [155 kB]
+2026-05-24T14:48:16.0953991Z Hit:2 http://azure.archive.ubuntu.com/ubuntu noble InRelease
+2026-05-24T14:48:16.0959321Z Get:10 https://packages.microsoft.com/ubuntu/24.04/prod noble/main arm64 Packages [126 kB]
+2026-05-24T14:48:16.0964866Z Get:3 http://azure.archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+2026-05-24T14:48:16.1006789Z Get:4 http://azure.archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+2026-05-24T14:48:16.1037569Z Get:5 http://azure.archive.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+2026-05-24T14:48:16.1633260Z Get:11 https://dl.google.com/linux/chrome-stable/deb stable/main amd64 Packages [1220 B]
+2026-05-24T14:48:16.2087464Z Get:12 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [2007 kB]
+2026-05-24T14:48:16.2177828Z Get:13 http://azure.archive.ubuntu.com/ubuntu noble-updates/main Translation-en [355 kB]
+2026-05-24T14:48:16.2202269Z Get:14 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Components [177 kB]
+2026-05-24T14:48:16.2215828Z Get:15 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1690 kB]
+2026-05-24T14:48:16.2299889Z Get:16 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe Translation-en [328 kB]
+2026-05-24T14:48:16.2323111Z Get:17 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Components [386 kB]
+2026-05-24T14:48:16.2347070Z Get:18 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [3202 kB]
+2026-05-24T14:48:16.2485890Z Get:19 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted Translation-en [740 kB]
+2026-05-24T14:48:16.2522907Z Get:20 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [44.7 kB]
+2026-05-24T14:48:16.2530895Z Get:21 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse Translation-en [10.9 kB]
+2026-05-24T14:48:16.2974284Z Get:22 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Components [940 B]
+2026-05-24T14:48:16.3040159Z Get:23 http://azure.archive.ubuntu.com/ubuntu noble-backports/main amd64 Components [5744 B]
+2026-05-24T14:48:16.3041124Z Get:24 http://azure.archive.ubuntu.com/ubuntu noble-backports/universe amd64 Components [10.6 kB]
+2026-05-24T14:48:16.3052329Z Get:25 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Packages [1698 kB]
+2026-05-24T14:48:16.3128846Z Get:26 http://azure.archive.ubuntu.com/ubuntu noble-security/main Translation-en [267 kB]
+2026-05-24T14:48:16.3145756Z Get:27 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Components [42.5 kB]
+2026-05-24T14:48:16.3154680Z Get:28 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1188 kB]
+2026-05-24T14:48:16.3211559Z Get:29 http://azure.archive.ubuntu.com/ubuntu noble-security/universe Translation-en [229 kB]
+2026-05-24T14:48:16.3227909Z Get:30 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Components [74.3 kB]
+2026-05-24T14:48:16.3240895Z Get:31 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [2997 kB]
+2026-05-24T14:48:16.3398118Z Get:32 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted Translation-en [697 kB]
+2026-05-24T14:48:16.3440822Z Get:33 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [39.3 kB]
+2026-05-24T14:48:16.3449670Z Get:34 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse Translation-en [8564 B]
+2026-05-24T14:48:21.3024480Z Fetched 16.9 MB in 2s (8684 kB/s)
+2026-05-24T14:48:22.2362402Z Reading package lists...
+2026-05-24T14:48:22.2701375Z Reading package lists...
+2026-05-24T14:48:22.4747393Z Building dependency tree...
+2026-05-24T14:48:22.4754703Z Reading state information...
+2026-05-24T14:48:22.6880646Z bc is already the newest version (1.07.1-3ubuntu4).
+2026-05-24T14:48:22.6881119Z bc set to manually installed.
+2026-05-24T14:48:22.6881460Z bison is already the newest version (2:3.8.2+dfsg-1build2).
+2026-05-24T14:48:22.6881861Z curl is already the newest version (8.5.0-2ubuntu10.9).
+2026-05-24T14:48:22.6882189Z flex is already the newest version (2.6.4-8.2build1).
+2026-05-24T14:48:22.6882536Z git is already the newest version (1:2.54.0-0ppa1~ubuntu24.04.1).
+2026-05-24T14:48:22.6882843Z git set to manually installed.
+2026-05-24T14:48:22.6883110Z jq is already the newest version (1.7.1-3ubuntu0.24.04.2).
+2026-05-24T14:48:22.6883453Z libssl-dev is already the newest version (3.0.13-0ubuntu3.9).
+2026-05-24T14:48:22.6883990Z make is already the newest version (4.3-4.1build2).
+2026-05-24T14:48:22.6884540Z python3 is already the newest version (3.12.3-0ubuntu2.1).
+2026-05-24T14:48:22.6885023Z unzip is already the newest version (6.0-28ubuntu4.1).
+2026-05-24T14:48:22.6885344Z wget is already the newest version (1.21.4-1ubuntu4.1).
+2026-05-24T14:48:22.6885641Z zip is already the newest version (3.0-13ubuntu0.2).
+2026-05-24T14:48:22.6885959Z The following additional packages will be installed:
+2026-05-24T14:48:22.6890022Z   libhiredis1.1.0 llvm-runtime
+2026-05-24T14:48:22.6900181Z Suggested packages:
+2026-05-24T14:48:22.6900474Z   distcc | icecc
+2026-05-24T14:48:22.7112146Z The following NEW packages will be installed:
+2026-05-24T14:48:22.7127956Z   build-essential ccache libelf-dev libhiredis1.1.0 lld llvm llvm-runtime
+2026-05-24T14:48:22.7318187Z 0 upgraded, 7 newly installed, 0 to remove and 16 not upgraded.
+2026-05-24T14:48:22.7318714Z Need to get 722 kB of archives.
+2026-05-24T14:48:22.7319036Z After this operation, 2308 kB of additional disk space will be used.
+2026-05-24T14:48:22.7319455Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+2026-05-24T14:48:22.8084740Z Get:2 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 build-essential amd64 12.10ubuntu1 [4928 B]
+2026-05-24T14:48:22.8674223Z Get:3 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libhiredis1.1.0 amd64 1.2.0-6ubuntu3 [41.4 kB]
+2026-05-24T14:48:22.9266046Z Get:4 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 ccache amd64 4.9.1-1 [592 kB]
+2026-05-24T14:48:22.9895213Z Get:5 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 libelf-dev amd64 0.190-1.1ubuntu0.1 [68.5 kB]
+2026-05-24T14:48:23.0485570Z Get:6 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 lld amd64 1:18.0-59~exp2 [5494 B]
+2026-05-24T14:48:23.1068780Z Get:7 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 llvm-runtime amd64 1:18.0-59~exp2 [5496 B]
+2026-05-24T14:48:23.1651672Z Get:8 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 llvm amd64 1:18.0-59~exp2 [4146 B]
+2026-05-24T14:48:23.4204686Z Fetched 722 kB in 0s (1630 kB/s)
+2026-05-24T14:48:23.4408831Z Selecting previously unselected package build-essential.
+2026-05-24T14:48:23.4607467Z (Reading database ... 
+2026-05-24T14:48:23.4607892Z (Reading database ... 5%
+2026-05-24T14:48:23.4608115Z (Reading database ... 10%
+2026-05-24T14:48:23.4608338Z (Reading database ... 15%
+2026-05-24T14:48:23.4608554Z (Reading database ... 20%
+2026-05-24T14:48:23.4608752Z (Reading database ... 25%
+2026-05-24T14:48:23.4608959Z (Reading database ... 30%
+2026-05-24T14:48:23.4609155Z (Reading database ... 35%
+2026-05-24T14:48:23.4609359Z (Reading database ... 40%
+2026-05-24T14:48:23.4609558Z (Reading database ... 45%
+2026-05-24T14:48:23.4609766Z (Reading database ... 50%
+2026-05-24T14:48:23.4659904Z (Reading database ... 55%
+2026-05-24T14:48:23.6672069Z (Reading database ... 60%
+2026-05-24T14:48:23.8258288Z (Reading database ... 65%
+2026-05-24T14:48:24.0238521Z (Reading database ... 70%
+2026-05-24T14:48:24.1919955Z (Reading database ... 75%
+2026-05-24T14:48:24.3721010Z (Reading database ... 80%
+2026-05-24T14:48:24.5707136Z (Reading database ... 85%
+2026-05-24T14:48:24.7736881Z (Reading database ... 90%
+2026-05-24T14:48:24.9885798Z (Reading database ... 95%
+2026-05-24T14:48:24.9886469Z (Reading database ... 100%
+2026-05-24T14:48:24.9886788Z (Reading database ... 202288 files and directories currently installed.)
+2026-05-24T14:48:24.9930615Z Preparing to unpack .../0-build-essential_12.10ubuntu1_amd64.deb ...
+2026-05-24T14:48:24.9951434Z Unpacking build-essential (12.10ubuntu1) ...
+2026-05-24T14:48:25.0119833Z Selecting previously unselected package libhiredis1.1.0:amd64.
+2026-05-24T14:48:25.0231690Z Preparing to unpack .../1-libhiredis1.1.0_1.2.0-6ubuntu3_amd64.deb ...
+2026-05-24T14:48:25.0256630Z Unpacking libhiredis1.1.0:amd64 (1.2.0-6ubuntu3) ...
+2026-05-24T14:48:25.0431843Z Selecting previously unselected package ccache.
+2026-05-24T14:48:25.0550110Z Preparing to unpack .../2-ccache_4.9.1-1_amd64.deb ...
+2026-05-24T14:48:25.0571525Z Unpacking ccache (4.9.1-1) ...
+2026-05-24T14:48:25.0940341Z Selecting previously unselected package libelf-dev:amd64.
+2026-05-24T14:48:25.1078109Z Preparing to unpack .../3-libelf-dev_0.190-1.1ubuntu0.1_amd64.deb ...
+2026-05-24T14:48:25.1088076Z Unpacking libelf-dev:amd64 (0.190-1.1ubuntu0.1) ...
+2026-05-24T14:48:25.1380307Z Selecting previously unselected package lld:amd64.
+2026-05-24T14:48:25.1490731Z Preparing to unpack .../4-lld_1%3a18.0-59~exp2_amd64.deb ...
+2026-05-24T14:48:25.1499491Z Unpacking lld:amd64 (1:18.0-59~exp2) ...
+2026-05-24T14:48:25.1688728Z Selecting previously unselected package llvm-runtime:amd64.
+2026-05-24T14:48:25.1802091Z Preparing to unpack .../5-llvm-runtime_1%3a18.0-59~exp2_amd64.deb ...
+2026-05-24T14:48:25.1816914Z Unpacking llvm-runtime:amd64 (1:18.0-59~exp2) ...
+2026-05-24T14:48:25.1991626Z Selecting previously unselected package llvm.
+2026-05-24T14:48:25.2102714Z Preparing to unpack .../6-llvm_1%3a18.0-59~exp2_amd64.deb ...
+2026-05-24T14:48:25.2129616Z Unpacking llvm (1:18.0-59~exp2) ...
+2026-05-24T14:48:25.2509141Z Setting up lld:amd64 (1:18.0-59~exp2) ...
+2026-05-24T14:48:25.2612251Z Setting up llvm-runtime:amd64 (1:18.0-59~exp2) ...
+2026-05-24T14:48:25.2613058Z Setting up libelf-dev:amd64 (0.190-1.1ubuntu0.1) ...
+2026-05-24T14:48:25.2613545Z Setting up llvm (1:18.0-59~exp2) ...
+2026-05-24T14:48:25.2614099Z Setting up build-essential (12.10ubuntu1) ...
+2026-05-24T14:48:25.2614548Z Setting up libhiredis1.1.0:amd64 (1.2.0-6ubuntu3) ...
+2026-05-24T14:48:25.2617783Z Setting up ccache (4.9.1-1) ...
+2026-05-24T14:48:25.2638453Z Updating symlinks in /usr/lib/ccache ...
+2026-05-24T14:48:25.2781450Z Processing triggers for libc-bin (2.39-0ubuntu8.7) ...
+2026-05-24T14:48:25.3040782Z Processing triggers for man-db (2.12.0-4build2) ...
+2026-05-24T14:48:25.3062009Z Not building database; man-db/auto-update is not 'true'.
+2026-05-24T14:48:25.8811383Z 
+2026-05-24T14:48:25.8812010Z Running kernel seems to be up-to-date.
+2026-05-24T14:48:25.8812374Z 
+2026-05-24T14:48:25.8812512Z No services need to be restarted.
+2026-05-24T14:48:25.8812760Z 
+2026-05-24T14:48:25.8813230Z No containers need to be restarted.
+2026-05-24T14:48:25.8813499Z 
+2026-05-24T14:48:25.8813661Z No user sessions are running outdated binaries.
+2026-05-24T14:48:25.8814136Z 
+2026-05-24T14:48:25.8814451Z No VM guests are running outdated hypervisor (qemu) binaries on this host.
+2026-05-24T14:48:26.8720809Z ##[group]Run actions/cache@v4
+2026-05-24T14:48:26.8721054Z with:
+2026-05-24T14:48:26.8721366Z   path: /home/runner/work/redmi10x5g-kernel-action/redmi10x5g-kernel-action/.ccache
+2026-05-24T14:48:26.8721804Z   key: ccache-redmi10x5g-atom-bomb-q-oss-26364337399
+2026-05-24T14:48:26.8722138Z   restore-keys: ccache-redmi10x5g-atom-bomb-q-oss-
+
+2026-05-24T14:48:26.8722437Z   enableCrossOsArchive: false
+2026-05-24T14:48:26.8722665Z   fail-on-cache-miss: false
+2026-05-24T14:48:26.8722877Z   lookup-only: false
+2026-05-24T14:48:26.8723067Z   save-always: false
+2026-05-24T14:48:26.8723240Z env:
+2026-05-24T14:48:26.8723399Z   ARCH: arm64
+2026-05-24T14:48:26.8723564Z   DEVICE: atom
+2026-05-24T14:48:26.8724150Z   CCACHE_DIR: /home/runner/work/redmi10x5g-kernel-action/redmi10x5g-kernel-action/.ccache
+2026-05-24T14:48:26.8724531Z   CCACHE_MAXSIZE: 6G
+2026-05-24T14:48:26.8724984Z   KERNEL_SOURCE: https://github.com/MiCode/Xiaomi_Kernel_OpenSource.git
+2026-05-24T14:48:26.8725348Z   KERNEL_BRANCH: bomb-q-oss
+2026-05-24T14:48:26.8725560Z   SUSFS_REF: kernel-4.14
+2026-05-24T14:48:26.8725760Z ##[endgroup]
+2026-05-24T14:48:27.2090340Z Cache not found for input keys: ccache-redmi10x5g-atom-bomb-q-oss-26364337399, ccache-redmi10x5g-atom-bomb-q-oss-
+2026-05-24T14:48:27.2144053Z ##[group]Run set -euo pipefail
+2026-05-24T14:48:27.2144338Z [36;1mset -euo pipefail[0m
+2026-05-24T14:48:27.2144724Z [36;1mgit clone --depth=1 --single-branch --branch "$KERNEL_BRANCH" "$KERNEL_SOURCE" kernel[0m
+2026-05-24T14:48:27.2145119Z [36;1mcd kernel[0m
+2026-05-24T14:48:27.2145309Z [36;1mecho "Kernel source:"[0m
+2026-05-24T14:48:27.2145533Z [36;1mgit log -1 --oneline[0m
+2026-05-24T14:48:27.2145808Z [36;1mgrep -E '^(VERSION|PATCHLEVEL|SUBLEVEL) = ' Makefile[0m
+2026-05-24T14:48:27.2167607Z shell: /usr/bin/bash -e {0}
+2026-05-24T14:48:27.2167852Z env:
+2026-05-24T14:48:27.2168024Z   ARCH: arm64
+2026-05-24T14:48:27.2168225Z   DEVICE: atom
+2026-05-24T14:48:27.2168599Z   CCACHE_DIR: /home/runner/work/redmi10x5g-kernel-action/redmi10x5g-kernel-action/.ccache
+2026-05-24T14:48:27.2169002Z   CCACHE_MAXSIZE: 6G
+2026-05-24T14:48:27.2169302Z   KERNEL_SOURCE: https://github.com/MiCode/Xiaomi_Kernel_OpenSource.git
+2026-05-24T14:48:27.2169636Z   KERNEL_BRANCH: bomb-q-oss
+2026-05-24T14:48:27.2169888Z   SUSFS_REF: kernel-4.14
+2026-05-24T14:48:27.2170082Z ##[endgroup]
+2026-05-24T14:48:27.2218930Z Cloning into 'kernel'...
+2026-05-24T14:48:37.1535583Z Updating files:  33% (24167/72246)
+2026-05-24T14:48:37.1931318Z Updating files:  34% (24564/72246)
+2026-05-24T14:48:37.2459576Z Updating files:  35% (25287/72246)
+2026-05-24T14:48:37.4601316Z Updating files:  36% (26009/72246)
+2026-05-24T14:48:37.5108042Z Updating files:  37% (26732/72246)
+2026-05-24T14:48:37.5374192Z Updating files:  38% (27454/72246)
+2026-05-24T14:48:37.5864829Z Updating files:  39% (28176/72246)
+2026-05-24T14:48:37.6370394Z Updating files:  40% (28899/72246)
+2026-05-24T14:48:37.6822897Z Updating files:  41% (29621/72246)
+2026-05-24T14:48:37.7371799Z Updating files:  42% (30344/72246)
+2026-05-24T14:48:37.7912854Z Updating files:  43% (31066/72246)
+2026-05-24T14:48:37.8468338Z Updating files:  44% (31789/72246)
+2026-05-24T14:48:37.8941808Z Updating files:  45% (32511/72246)
+2026-05-24T14:48:37.9346754Z Updating files:  46% (33234/72246)
+2026-05-24T14:48:37.9861860Z Updating files:  47% (33956/72246)
+2026-05-24T14:48:38.0225497Z Updating files:  48% (34679/72246)
+2026-05-24T14:48:38.0647618Z Updating files:  49% (35401/72246)
+2026-05-24T14:48:38.1027076Z Updating files:  50% (36123/72246)
+2026-05-24T14:48:38.1308603Z Updating files:  51% (36846/72246)
+2026-05-24T14:48:38.1356830Z Updating files:  51% (37459/72246)
+2026-05-24T14:48:38.1647604Z Updating files:  52% (37568/72246)
+2026-05-24T14:48:38.1957836Z Updating files:  53% (38291/72246)
+2026-05-24T14:48:38.2489741Z Updating files:  54% (39013/72246)
+2026-05-24T14:48:38.2876770Z Updating files:  55% (39736/72246)
+2026-05-24T14:48:38.3228063Z Updating files:  56% (40458/72246)
+2026-05-24T14:48:38.3684372Z Updating files:  57% (41181/72246)
+2026-05-24T14:48:38.4010286Z Updating files:  58% (41903/72246)
+2026-05-24T14:48:38.4519635Z Updating files:  59% (42626/72246)
+2026-05-24T14:48:38.4848627Z Updating files:  60% (43348/72246)
+2026-05-24T14:48:38.5416912Z Updating files:  61% (44071/72246)
+2026-05-24T14:48:38.5971335Z Updating files:  62% (44793/72246)
+2026-05-24T14:48:38.6759748Z Updating files:  63% (45515/72246)
+2026-05-24T14:48:38.7509502Z Updating files:  64% (46238/72246)
+2026-05-24T14:48:38.8178430Z Updating files:  65% (46960/72246)
+2026-05-24T14:48:38.8852712Z Updating files:  66% (47683/72246)
+2026-05-24T14:48:38.9377295Z Updating files:  67% (48405/72246)
+2026-05-24T14:48:38.9918017Z Updating files:  68% (49128/72246)
+2026-05-24T14:48:39.0420524Z Updating files:  69% (49850/72246)
+2026-05-24T14:48:39.1022840Z Updating files:  70% (50573/72246)
+2026-05-24T14:48:39.1311395Z Updating files:  71% (51295/72246)
+2026-05-24T14:48:39.1967702Z Updating files:  71% (51504/72246)
+2026-05-24T14:48:39.2405038Z Updating files:  72% (52018/72246)
+2026-05-24T14:48:39.2966075Z Updating files:  73% (52740/72246)
+2026-05-24T14:48:39.3225198Z Updating files:  74% (53463/72246)
+2026-05-24T14:48:39.3720638Z Updating files:  75% (54185/72246)
+2026-05-24T14:48:39.4156092Z Updating files:  76% (54907/72246)
+2026-05-24T14:48:39.4824874Z Updating files:  77% (55630/72246)
+2026-05-24T14:48:39.5308579Z Updating files:  78% (56352/72246)
+2026-05-24T14:48:39.5787132Z Updating files:  79% (57075/72246)
+2026-05-24T14:48:39.6408448Z Updating files:  80% (57797/72246)
+2026-05-24T14:48:39.7015602Z Updating files:  81% (58520/72246)
+2026-05-24T14:48:39.7417379Z Updating files:  82% (59242/72246)
+2026-05-24T14:48:39.7696214Z Updating files:  83% (59965/72246)
+2026-05-24T14:48:39.8168252Z Updating files:  84% (60687/72246)
+2026-05-24T14:48:39.8447326Z Updating files:  85% (61410/72246)
+2026-05-24T14:48:39.8755228Z Updating files:  86% (62132/72246)
+2026-05-24T14:48:39.9082389Z Updating files:  87% (62855/72246)
+2026-05-24T14:48:39.9387138Z Updating files:  88% (63577/72246)
+2026-05-24T14:48:39.9923216Z Updating files:  89% (64299/72246)
+2026-05-24T14:48:40.0523079Z Updating files:  90% (65022/72246)
+2026-05-24T14:48:40.1011502Z Updating files:  91% (65744/72246)
+2026-05-24T14:48:40.1308997Z Updating files:  92% (66467/72246)
+2026-05-24T14:48:40.1433345Z Updating files:  92% (66858/72246)
+2026-05-24T14:48:40.1891525Z Updating files:  93% (67189/72246)
+2026-05-24T14:48:40.2413643Z Updating files:  94% (67912/72246)
+2026-05-24T14:48:40.3029451Z Updating files:  95% (68634/72246)
+2026-05-24T14:48:40.3367992Z Updating files:  96% (69357/72246)
+2026-05-24T14:48:40.3687379Z Updating files:  97% (70079/72246)
+2026-05-24T14:48:40.3998494Z Updating files:  98% (70802/72246)
+2026-05-24T14:48:40.4228964Z Updating files:  99% (71524/72246)
+2026-05-24T14:48:40.4229468Z Updating files: 100% (72246/72246)
+2026-05-24T14:48:40.4229877Z Updating files: 100% (72246/72246), done.
+2026-05-24T14:48:40.4962482Z Kernel source:
+2026-05-24T14:48:40.4978698Z 2fbae8b5a Kernel: Xiaomi kernel changes for Redmi 10X and Redmi 10X Pro Android Q
+2026-05-24T14:48:40.4993549Z VERSION = 4
+2026-05-24T14:48:40.4993967Z PATCHLEVEL = 14
+2026-05-24T14:48:40.4994181Z SUBLEVEL = 141
+2026-05-24T14:48:40.5019075Z ##[group]Run set -euo pipefail
+2026-05-24T14:48:40.5019372Z [36;1mset -euo pipefail[0m
+2026-05-24T14:48:40.5019773Z [36;1mgit clone --depth=1 https://github.com/kdrag0n/proton-clang.git toolchains/proton-clang[0m
+2026-05-24T14:48:40.5020333Z [36;1mgit clone --depth=1 https://github.com/mvaisakh/gcc-arm64.git toolchains/gcc-arm64[0m
+2026-05-24T14:48:40.5020850Z [36;1mgit clone --depth=1 https://github.com/mvaisakh/gcc-arm.git toolchains/gcc-arm[0m
+2026-05-24T14:48:40.5040911Z shell: /usr/bin/bash -e {0}
+2026-05-24T14:48:40.5041156Z env:
+2026-05-24T14:48:40.5041320Z   ARCH: arm64
+2026-05-24T14:48:40.5041509Z   DEVICE: atom
+2026-05-24T14:48:40.5041869Z   CCACHE_DIR: /home/runner/work/redmi10x5g-kernel-action/redmi10x5g-kernel-action/.ccache
+2026-05-24T14:48:40.5042290Z   CCACHE_MAXSIZE: 6G
+2026-05-24T14:48:40.5042589Z   KERNEL_SOURCE: https://github.com/MiCode/Xiaomi_Kernel_OpenSource.git
+2026-05-24T14:48:40.5042921Z   KERNEL_BRANCH: bomb-q-oss
+2026-05-24T14:48:40.5043187Z   SUSFS_REF: kernel-4.14
+2026-05-24T14:48:40.5043388Z ##[endgroup]
+2026-05-24T14:48:40.5090597Z Cloning into 'toolchains/proton-clang'...
+2026-05-24T14:50:17.1231267Z Updating files:  33% (369/1110)
+2026-05-24T14:50:17.7765337Z Updating files:  34% (378/1110)
+2026-05-24T14:50:17.8283259Z Updating files:  34% (384/1110)
+2026-05-24T14:50:18.3480556Z Updating files:  35% (389/1110)
+2026-05-24T14:50:18.5386116Z Updating files:  36% (400/1110)
+2026-05-24T14:50:18.9099162Z Updating files:  36% (401/1110)
+2026-05-24T14:50:19.6048572Z Updating files:  37% (411/1110)
+2026-05-24T14:50:19.6120113Z Updating files:  37% (421/1110)
+2026-05-24T14:50:20.2379162Z Updating files:  38% (422/1110)
+2026-05-24T14:50:20.4886742Z Updating files:  39% (433/1110)
+2026-05-24T14:50:20.7690413Z Updating files:  39% (436/1110)
+2026-05-24T14:50:20.8816250Z Updating files:  40% (444/1110)
+2026-05-24T14:50:21.3471358Z Updating files:  41% (456/1110)
+2026-05-24T14:50:21.4937037Z Updating files:  42% (467/1110)
+2026-05-24T14:50:21.9253038Z Updating files:  42% (470/1110)
+2026-05-24T14:50:21.9258924Z Updating files:  43% (478/1110)
+2026-05-24T14:50:21.9273986Z Updating files:  44% (489/1110)
+2026-05-24T14:50:21.9363246Z Updating files:  45% (500/1110)
+2026-05-24T14:50:21.9376580Z Updating files:  46% (511/1110)
+2026-05-24T14:50:21.9385503Z Updating files:  47% (522/1110)
+2026-05-24T14:50:21.9392947Z Updating files:  48% (533/1110)
+2026-05-24T14:50:21.9405900Z Updating files:  49% (544/1110)
+2026-05-24T14:50:21.9411647Z Updating files:  50% (555/1110)
+2026-05-24T14:50:21.9418913Z Updating files:  51% (567/1110)
+2026-05-24T14:50:21.9438933Z Updating files:  52% (578/1110)
+2026-05-24T14:50:21.9448017Z Updating files:  53% (589/1110)
+2026-05-24T14:50:21.9515847Z Updating files:  54% (600/1110)
+2026-05-24T14:50:21.9535969Z Updating files:  55% (611/1110)
+2026-05-24T14:50:21.9543290Z Updating files:  56% (622/1110)
+2026-05-24T14:50:21.9553616Z Updating files:  57% (633/1110)
+2026-05-24T14:50:21.9558308Z Updating files:  58% (644/1110)
+2026-05-24T14:50:22.0137573Z Updating files:  59% (655/1110)
+2026-05-24T14:50:22.0281009Z Updating files:  60% (666/1110)
+2026-05-24T14:50:22.0344791Z Updating files:  61% (678/1110)
+2026-05-24T14:50:22.0425020Z Updating files:  62% (689/1110)
+2026-05-24T14:50:22.0470207Z Updating files:  63% (700/1110)
+2026-05-24T14:50:22.0484168Z Updating files:  64% (711/1110)
+2026-05-24T14:50:22.0491860Z Updating files:  65% (722/1110)
+2026-05-24T14:50:22.0497554Z Updating files:  66% (733/1110)
+2026-05-24T14:50:22.0502982Z Updating files:  67% (744/1110)
+2026-05-24T14:50:22.2539553Z Updating files:  68% (755/1110)
+2026-05-24T14:50:22.5812236Z Updating files:  69% (766/1110)
+2026-05-24T14:50:22.8456666Z Updating files:  69% (769/1110)
+2026-05-24T14:50:22.8561694Z Updating files:  70% (777/1110)
+2026-05-24T14:50:22.8604133Z Updating files:  71% (789/1110)
+2026-05-24T14:50:22.8669806Z Updating files:  72% (800/1110)
+2026-05-24T14:50:22.8743629Z Updating files:  73% (811/1110)
+2026-05-24T14:50:22.8806670Z Updating files:  74% (822/1110)
+2026-05-24T14:50:22.8842871Z Updating files:  75% (833/1110)
+2026-05-24T14:50:22.8903894Z Updating files:  76% (844/1110)
+2026-05-24T14:50:22.8947002Z Updating files:  77% (855/1110)
+2026-05-24T14:50:22.8999535Z Updating files:  78% (866/1110)
+2026-05-24T14:50:22.9020806Z Updating files:  79% (877/1110)
+2026-05-24T14:50:22.9048325Z Updating files:  80% (888/1110)
+2026-05-24T14:50:22.9062865Z Updating files:  81% (900/1110)
+2026-05-24T14:50:22.9078580Z Updating files:  82% (911/1110)
+2026-05-24T14:50:22.9087638Z Updating files:  83% (922/1110)
+2026-05-24T14:50:22.9098814Z Updating files:  84% (933/1110)
+2026-05-24T14:50:22.9251859Z Updating files:  85% (944/1110)
+2026-05-24T14:50:23.0978212Z Updating files:  86% (955/1110)
+2026-05-24T14:50:23.0982986Z Updating files:  87% (966/1110)
+2026-05-24T14:50:23.0987364Z Updating files:  88% (977/1110)
+2026-05-24T14:50:23.0990897Z Updating files:  89% (988/1110)
+2026-05-24T14:50:23.0995163Z Updating files:  90% (999/1110)
+2026-05-24T14:50:23.0998094Z Updating files:  91% (1011/1110)
+2026-05-24T14:50:23.1001176Z Updating files:  92% (1022/1110)
+2026-05-24T14:50:23.1004351Z Updating files:  93% (1033/1110)
+2026-05-24T14:50:23.1007386Z Updating files:  94% (1044/1110)
+2026-05-24T14:50:23.1010108Z Updating files:  95% (1055/1110)
+2026-05-24T14:50:23.1012880Z Updating files:  96% (1066/1110)
+2026-05-24T14:50:23.1016313Z Updating files:  97% (1077/1110)
+2026-05-24T14:50:23.1019905Z Updating files:  98% (1088/1110)
+2026-05-24T14:50:23.1024937Z Updating files:  99% (1099/1110)
+2026-05-24T14:50:23.1025374Z Updating files: 100% (1110/1110)
+2026-05-24T14:50:23.1025803Z Updating files: 100% (1110/1110), done.
+2026-05-24T14:50:23.1124336Z Cloning into 'toolchains/gcc-arm64'...
+2026-05-24T14:51:00.4978911Z Updating files:  79% (2534/3181)
+2026-05-24T14:51:00.5243957Z Updating files:  80% (2545/3181)
+2026-05-24T14:51:00.5320809Z Updating files:  81% (2577/3181)
+2026-05-24T14:51:00.5339314Z Updating files:  82% (2609/3181)
+2026-05-24T14:51:00.5365177Z Updating files:  83% (2641/3181)
+2026-05-24T14:51:00.5387237Z Updating files:  84% (2673/3181)
+2026-05-24T14:51:00.5417931Z Updating files:  85% (2704/3181)
+2026-05-24T14:51:00.5434864Z Updating files:  86% (2736/3181)
+2026-05-24T14:51:00.5452297Z Updating files:  87% (2768/3181)
+2026-05-24T14:51:00.5470571Z Updating files:  88% (2800/3181)
+2026-05-24T14:51:00.5532068Z Updating files:  89% (2832/3181)
+2026-05-24T14:51:00.5557155Z Updating files:  90% (2863/3181)
+2026-05-24T14:51:00.5575319Z Updating files:  91% (2895/3181)
+2026-05-24T14:51:00.5606559Z Updating files:  92% (2927/3181)
+2026-05-24T14:51:00.5635139Z Updating files:  93% (2959/3181)
+2026-05-24T14:51:00.5663495Z Updating files:  94% (2991/3181)
+2026-05-24T14:51:00.5683404Z Updating files:  95% (3022/3181)
+2026-05-24T14:51:00.5697073Z Updating files:  96% (3054/3181)
+2026-05-24T14:51:00.5729908Z Updating files:  97% (3086/3181)
+2026-05-24T14:51:01.3590508Z Updating files:  98% (3118/3181)
+2026-05-24T14:51:01.4300638Z Updating files:  98% (3123/3181)
+2026-05-24T14:51:01.4440263Z Updating files:  99% (3150/3181)
+2026-05-24T14:51:01.4440783Z Updating files: 100% (3181/3181)
+2026-05-24T14:51:01.4441221Z Updating files: 100% (3181/3181), done.
+2026-05-24T14:51:01.4515825Z Cloning into 'toolchains/gcc-arm'...
+2026-05-24T14:51:35.9559713Z Updating files:  78% (2429/3097)
+2026-05-24T14:51:35.9744268Z Updating files:  79% (2447/3097)
+2026-05-24T14:51:36.0144452Z Updating files:  80% (2478/3097)
+2026-05-24T14:51:36.0163124Z Updating files:  81% (2509/3097)
+2026-05-24T14:51:36.0188133Z Updating files:  82% (2540/3097)
+2026-05-24T14:51:36.0209640Z Updating files:  83% (2571/3097)
+2026-05-24T14:51:36.0245719Z Updating files:  84% (2602/3097)
+2026-05-24T14:51:36.0261707Z Updating files:  85% (2633/3097)
+2026-05-24T14:51:36.0278397Z Updating files:  86% (2664/3097)
+2026-05-24T14:51:36.0296584Z Updating files:  87% (2695/3097)
+2026-05-24T14:51:36.0337678Z Updating files:  88% (2726/3097)
+2026-05-24T14:51:36.0361640Z Updating files:  89% (2757/3097)
+2026-05-24T14:51:36.0377908Z Updating files:  90% (2788/3097)
+2026-05-24T14:51:36.0409060Z Updating files:  91% (2819/3097)
+2026-05-24T14:51:36.0434348Z Updating files:  92% (2850/3097)
+2026-05-24T14:51:36.0451910Z Updating files:  93% (2881/3097)
+2026-05-24T14:51:36.0481995Z Updating files:  94% (2912/3097)
+2026-05-24T14:51:36.0494323Z Updating files:  95% (2943/3097)
+2026-05-24T14:51:36.0528404Z Updating files:  96% (2974/3097)
+2026-05-24T14:51:36.5912828Z Updating files:  97% (3005/3097)
+2026-05-24T14:51:36.8298732Z Updating files:  98% (3036/3097)
+2026-05-24T14:51:36.8669521Z Updating files:  98% (3046/3097)
+2026-05-24T14:51:36.8808739Z Updating files:  99% (3067/3097)
+2026-05-24T14:51:36.8809260Z Updating files: 100% (3097/3097)
+2026-05-24T14:51:36.8809711Z Updating files: 100% (3097/3097), done.
+2026-05-24T14:51:36.8915136Z ##[group]Run set -euo pipefail
+2026-05-24T14:51:36.8915425Z [36;1mset -euo pipefail[0m
+2026-05-24T14:51:36.8915645Z [36;1mif [ -n "" ]; then[0m
+2026-05-24T14:51:36.8916078Z [36;1m  curl -LSs "https://raw.githubusercontent.com/ReSukiSU/ReSukiSU/main/kernel/setup.sh" | sh -s ""[0m
+2026-05-24T14:51:36.8916515Z [36;1melse[0m
+2026-05-24T14:51:36.8916862Z [36;1m  curl -LSs "https://raw.githubusercontent.com/ReSukiSU/ReSukiSU/main/kernel/setup.sh" | sh[0m
+2026-05-24T14:51:36.8917268Z [36;1mfi[0m
+2026-05-24T14:51:36.8937331Z shell: /usr/bin/bash -e {0}
+2026-05-24T14:51:36.8937559Z env:
+2026-05-24T14:51:36.8937721Z   ARCH: arm64
+2026-05-24T14:51:36.8937895Z   DEVICE: atom
+2026-05-24T14:51:36.8938237Z   CCACHE_DIR: /home/runner/work/redmi10x5g-kernel-action/redmi10x5g-kernel-action/.ccache
+2026-05-24T14:51:36.8938622Z   CCACHE_MAXSIZE: 6G
+2026-05-24T14:51:36.8938924Z   KERNEL_SOURCE: https://github.com/MiCode/Xiaomi_Kernel_OpenSource.git
+2026-05-24T14:51:36.8939495Z   KERNEL_BRANCH: bomb-q-oss
+2026-05-24T14:51:36.8939712Z   SUSFS_REF: kernel-4.14
+2026-05-24T14:51:36.8939927Z ##[endgroup]
+2026-05-24T14:51:37.1611411Z [+] Setting up KernelSU...
+2026-05-24T14:51:37.1621875Z Cloning into 'KernelSU'...
+2026-05-24T14:51:40.7467227Z [+] Repository cloned.
+2026-05-24T14:51:40.7865693Z No local changes to save
+2026-05-24T14:51:40.7866118Z [-] Stashed current changes.
+2026-05-24T14:51:41.1400704Z Already up to date.
+2026-05-24T14:51:41.1403520Z [+] Repository updated.
+2026-05-24T14:51:41.1889329Z Already on 'main'
+2026-05-24T14:51:41.1890607Z Your branch is up to date with 'origin/main'.
+2026-05-24T14:51:41.1893820Z [-] Checked out main branch.
+2026-05-24T14:51:41.1922449Z [+] Symlink created.
+2026-05-24T14:51:41.1932684Z [+] Modified Makefile.
+2026-05-24T14:51:41.1954139Z [+] Modified Kconfig.
+2026-05-24T14:51:41.1954458Z [+] Done.
+2026-05-24T14:51:41.1990096Z ##[group]Run set -euo pipefail
+2026-05-24T14:51:41.1990592Z [36;1mset -euo pipefail[0m
+2026-05-24T14:51:41.1991268Z [36;1mbase="https://gitlab.com/simonpunk/susfs4ksu/-/raw/${SUSFS_REF}/kernel_patches"[0m
+2026-05-24T14:51:41.1992282Z [36;1mcurl -fLSs -o /tmp/50_add_susfs_in_kernel-4.14.patch "$base/50_add_susfs_in_kernel-4.14.patch"[0m
+2026-05-24T14:51:41.1993146Z [36;1mpatch -p1 --forward < /tmp/50_add_susfs_in_kernel-4.14.patch[0m
+2026-05-24T14:51:41.1994057Z [36;1mmkdir -p fs include/linux[0m
+2026-05-24T14:51:41.1994524Z [36;1mcurl -fLSs -o fs/susfs.c "$base/fs/susfs.c"[0m
+2026-05-24T14:51:41.1995090Z [36;1mcurl -fLSs -o fs/sus_su.c "$base/fs/sus_su.c"[0m
+2026-05-24T14:51:41.1995730Z [36;1mcurl -fLSs -o include/linux/susfs.h "$base/include/linux/susfs.h"[0m
+2026-05-24T14:51:41.1996513Z [36;1mcurl -fLSs -o include/linux/susfs_def.h "$base/include/linux/susfs_def.h"[0m
+2026-05-24T14:51:41.1997402Z [36;1mcurl -fLSs -o include/linux/sus_su.h "$base/include/linux/sus_su.h"[0m
+2026-05-24T14:51:41.1998034Z [36;1mif [ -d KernelSU ]; then[0m
+2026-05-24T14:51:41.1998806Z [36;1m  curl -fLSs -o /tmp/10_enable_susfs_for_ksu.patch "$base/KernelSU/10_enable_susfs_for_ksu.patch"[0m
+2026-05-24T14:51:41.1999761Z [36;1m  (cd KernelSU && patch -p1 --forward < /tmp/10_enable_susfs_for_ksu.patch) || true[0m
+2026-05-24T14:51:41.2000389Z [36;1mfi[0m
+2026-05-24T14:51:41.2031458Z shell: /usr/bin/bash -e {0}
+2026-05-24T14:51:41.2031847Z env:
+2026-05-24T14:51:41.2032118Z   ARCH: arm64
+2026-05-24T14:51:41.2032421Z   DEVICE: atom
+2026-05-24T14:51:41.2033048Z   CCACHE_DIR: /home/runner/work/redmi10x5g-kernel-action/redmi10x5g-kernel-action/.ccache
+2026-05-24T14:51:41.2034010Z   CCACHE_MAXSIZE: 6G
+2026-05-24T14:51:41.2034531Z   KERNEL_SOURCE: https://github.com/MiCode/Xiaomi_Kernel_OpenSource.git
+2026-05-24T14:51:41.2035164Z   KERNEL_BRANCH: bomb-q-oss
+2026-05-24T14:51:41.2035537Z   SUSFS_REF: kernel-4.14
+2026-05-24T14:51:41.2035871Z ##[endgroup]
+2026-05-24T14:51:41.5371962Z patching file fs/Makefile
+2026-05-24T14:51:41.5372457Z Hunk #1 succeeded at 15 (offset 1 line).
+2026-05-24T14:51:41.5373121Z patching file fs/dcache.c
+2026-05-24T14:51:41.5375963Z Hunk #1 FAILED at 39.
+2026-05-24T14:51:41.5377246Z Hunk #2 succeeded at 2247 (offset 22 lines).
+2026-05-24T14:51:41.5377730Z Hunk #3 succeeded at 2335 (offset 22 lines).
+2026-05-24T14:51:41.5378301Z 1 out of 3 hunks FAILED -- saving rejects to file fs/dcache.c.rej
+2026-05-24T14:51:41.5380941Z patching file fs/namei.c
+2026-05-24T14:51:41.5381360Z Hunk #1 succeeded at 40 (offset 1 line).
+2026-05-24T14:51:41.5381881Z Hunk #2 succeeded at 947 (offset -83 lines).
+2026-05-24T14:51:41.5382397Z Hunk #3 succeeded at 1029 (offset -83 lines).
+2026-05-24T14:51:41.5382906Z Hunk #4 succeeded at 1074 (offset -83 lines).
+2026-05-24T14:51:41.5383412Z Hunk #5 succeeded at 1594 (offset -83 lines).
+2026-05-24T14:51:41.5384060Z Hunk #6 succeeded at 1743 (offset -83 lines).
+2026-05-24T14:51:41.5384656Z Hunk #7 succeeded at 2227 (offset -83 lines).
+2026-05-24T14:51:41.5385580Z Hunk #8 succeeded at 2438 (offset -83 lines).
+2026-05-24T14:51:41.5386089Z Hunk #9 succeeded at 2901 (offset -83 lines).
+2026-05-24T14:51:41.5386873Z Hunk #10 succeeded at 2935 (offset -83 lines).
+2026-05-24T14:51:41.5387333Z Hunk #11 succeeded at 3048 (offset -88 lines).
+2026-05-24T14:51:41.5387791Z Hunk #12 succeeded at 3125 (offset -88 lines).
+2026-05-24T14:51:41.5388243Z Hunk #13 succeeded at 3282 (offset -88 lines).
+2026-05-24T14:51:41.5388692Z Hunk #14 succeeded at 3331 (offset -88 lines).
+2026-05-24T14:51:41.5389156Z Hunk #15 succeeded at 3356 (offset -88 lines).
+2026-05-24T14:51:41.5389605Z Hunk #16 succeeded at 3728 (offset -91 lines).
+2026-05-24T14:51:41.5390059Z Hunk #17 succeeded at 3748 (offset -91 lines).
+2026-05-24T14:51:41.5390513Z patching file fs/namespace.c
+2026-05-24T14:51:41.5390911Z Hunk #1 succeeded at 26 (offset -1 lines).
+2026-05-24T14:51:41.5391363Z Hunk #2 succeeded at 128 (offset -1 lines).
+2026-05-24T14:51:41.5391818Z Hunk #3 succeeded at 167 (offset -1 lines).
+2026-05-24T14:51:41.5392432Z Hunk #4 succeeded at 212 (offset -1 lines).
+2026-05-24T14:51:41.5392876Z Hunk #5 succeeded at 243 (offset -1 lines).
+2026-05-24T14:51:41.5393322Z Hunk #6 succeeded at 301 (offset -1 lines).
+2026-05-24T14:51:41.5393991Z Hunk #7 succeeded at 1157 (offset -1 lines).
+2026-05-24T14:51:41.5394444Z Hunk #8 succeeded at 1193 (offset -1 lines).
+2026-05-24T14:51:41.5394909Z Hunk #9 succeeded at 1230 (offset -1 lines).
+2026-05-24T14:51:41.5395366Z Hunk #10 succeeded at 1327 (offset -1 lines).
+2026-05-24T14:51:41.5395851Z Hunk #11 succeeded at 2497 (offset -58 lines).
+2026-05-24T14:51:41.5396322Z Hunk #12 succeeded at 3114 (offset -61 lines).
+2026-05-24T14:51:41.5396790Z Hunk #13 succeeded at 3200 (offset -61 lines).
+2026-05-24T14:51:41.5397250Z Hunk #14 succeeded at 3223 (offset -61 lines).
+2026-05-24T14:51:41.5397714Z Hunk #15 succeeded at 3267 (offset -61 lines).
+2026-05-24T14:51:41.5398201Z Hunk #16 succeeded at 3830 (offset -61 lines).
+2026-05-24T14:51:41.5398660Z patching file fs/notify/fdinfo.c
+2026-05-24T14:51:41.5399046Z Hunk #4 FAILED at 101.
+2026-05-24T14:51:41.5399543Z 1 out of 4 hunks FAILED -- saving rejects to file fs/notify/fdinfo.c.rej
+2026-05-24T14:51:41.5400143Z patching file fs/overlayfs/inode.c
+2026-05-24T14:51:41.5400558Z patching file fs/overlayfs/overlayfs.h
+2026-05-24T14:51:41.5401009Z Hunk #1 succeeded at 197 (offset -2 lines).
+2026-05-24T14:51:41.5401443Z patching file fs/overlayfs/readdir.c
+2026-05-24T14:51:41.5401866Z patching file fs/overlayfs/super.c
+2026-05-24T14:51:41.5402288Z patching file fs/overlayfs/util.c
+2026-05-24T14:51:41.5402699Z Hunk #1 succeeded at 136 (offset -6 lines).
+2026-05-24T14:51:41.5403136Z patching file fs/proc/cmdline.c
+2026-05-24T14:51:41.5404018Z patching file fs/proc/fd.c
+2026-05-24T14:51:41.5404460Z patching file fs/proc/task_mmu.c
+2026-05-24T14:51:41.5404896Z patching file fs/proc_namespace.c
+2026-05-24T14:51:41.5405308Z patching file fs/readdir.c
+2026-05-24T14:51:41.5405657Z Hunk #2 FAILED at 215.
+2026-05-24T14:51:41.5405993Z Hunk #3 FAILED at 304.
+2026-05-24T14:51:41.5410304Z Hunk #4 FAILED at 399.
+2026-05-24T14:51:41.5410753Z Hunk #5 succeeded at 428 (offset -46 lines).
+2026-05-24T14:51:41.5411653Z 3 out of 5 hunks FAILED -- saving rejects to file fs/readdir.c.rej
+2026-05-24T14:51:41.5412211Z patching file fs/stat.c
+2026-05-24T14:51:41.5412577Z patching file fs/statfs.c
+2026-05-24T14:51:41.5412955Z patching file include/linux/mount.h
+2026-05-24T14:51:41.5413336Z patching file include/linux/sched.h
+2026-05-24T14:51:41.5413582Z Hunk #1 succeeded at 1375 (offset 6 lines).
+2026-05-24T14:51:41.5414044Z patching file kernel/kallsyms.c
+2026-05-24T14:51:41.5414291Z Hunk #1 succeeded at 639 (offset -8 lines).
+2026-05-24T14:51:41.5414532Z patching file kernel/sys.c
+2026-05-24T14:51:41.5414774Z Hunk #1 succeeded at 1179 (offset -3 lines).
+2026-05-24T14:51:41.5442404Z ##[error]Process completed with exit code 1.
+2026-05-24T14:51:41.5520536Z ##[group]Run actions/upload-artifact@v4
+2026-05-24T14:51:41.5520786Z with:
+2026-05-24T14:51:41.5520967Z   name: build-logs-atom-1
+2026-05-24T14:51:41.5521366Z   path: kernel/out/.config
+kernel/out/include/config/kernel.release
+kernel/out/arch/arm64/boot/Image*
+
+2026-05-24T14:51:41.5521930Z   if-no-files-found: ignore
+2026-05-24T14:51:41.5522151Z   compression-level: 6
+2026-05-24T14:51:41.5522340Z   overwrite: false
+2026-05-24T14:51:41.5522537Z   include-hidden-files: false
+2026-05-24T14:51:41.5522738Z env:
+2026-05-24T14:51:41.5522906Z   ARCH: arm64
+2026-05-24T14:51:41.5523069Z   DEVICE: atom
+2026-05-24T14:51:41.5523406Z   CCACHE_DIR: /home/runner/work/redmi10x5g-kernel-action/redmi10x5g-kernel-action/.ccache
+2026-05-24T14:51:41.5524029Z   CCACHE_MAXSIZE: 6G
+2026-05-24T14:51:41.5524342Z   KERNEL_SOURCE: https://github.com/MiCode/Xiaomi_Kernel_OpenSource.git
+2026-05-24T14:51:41.5524675Z   KERNEL_BRANCH: bomb-q-oss
+2026-05-24T14:51:41.5524887Z   SUSFS_REF: kernel-4.14
+2026-05-24T14:51:41.5525138Z ##[endgroup]
+2026-05-24T14:51:41.7662669Z Multiple search paths detected. Calculating the least common ancestor of all paths
+2026-05-24T14:51:41.7666035Z The least common ancestor is /home/runner/work/redmi10x5g-kernel-action/redmi10x5g-kernel-action/kernel/out. This will be the root directory of the artifact
+2026-05-24T14:51:41.7667369Z No files were found with the provided path: kernel/out/.config
+2026-05-24T14:51:41.7667936Z kernel/out/include/config/kernel.release
+2026-05-24T14:51:41.7668538Z kernel/out/arch/arm64/boot/Image*. No artifacts will be uploaded.
+2026-05-24T14:51:41.7840366Z Post job cleanup.
+2026-05-24T14:51:41.8806172Z Cleaning up orphan processes
+2026-05-24T14:51:41.9074920Z ##[warning]Node.js 20 actions are deprecated. The following actions are running on Node.js 20 and may not work as expected: actions/cache@v4, actions/checkout@v4, actions/upload-artifact@v4. Actions will be forced to run with Node.js 24 by default starting June 2nd, 2026. Node.js 20 will be removed from the runner on September 16th, 2026. Please check if updated versions of these actions are available that support Node.js 24. To opt into Node.js 24 now, set the FORCE_JAVASCRIPT_ACTIONS_TO_NODE24=true environment variable on the runner or in your workflow file. Once Node.js 24 becomes the default, you can temporarily opt out by setting ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
