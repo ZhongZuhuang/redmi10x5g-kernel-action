@@ -225,7 +225,14 @@ jobs:
                   path.write_text(text)
 
           shim = Path("tools/dct/obj/ConfigParser.py")
-          shim.write_text("from configparser import *\n")
+          shim.write_text(
+              "from configparser import *\n"
+              "from configparser import ConfigParser as _ConfigParser\n\n"
+              "class ConfigParser(_ConfigParser):\n"
+              "    def __init__(self, *args, **kwargs):\n"
+              "        kwargs.setdefault('strict', False)\n"
+              "        super().__init__(*args, **kwargs)\n"
+          )
 
           for path in sorted(Path("tools/dct").rglob("*.py")):
               ast.parse(path.read_text(), filename=str(path))
