@@ -164,7 +164,7 @@ jobs:
                   1,
               )
               text = text.replace("except Exception, e:", "except Exception as e:")
-              text = re.sub(r"\bcmp\(", "__dct_cmp(", text)
+              text = re.sub(r"\bcmp\(", "dct_cmp(", text)
               text = re.sub(r"\bstring\.atoi\(", "int(", text)
               text = re.sub(r"^(\s*)print\s+(.+)$", r"\1print(\2)", text, flags=re.M)
               text = text.replace(".keys()[", ".keys_list()[")
@@ -180,7 +180,7 @@ jobs:
           text = text.replace(
               "import os, sys\n",
               "import os, sys\n\n"
-              "def __dct_cmp(a, b):\n"
+              "def dct_cmp(a, b):\n"
               "    return (a > b) - (a < b)\n\n",
               1,
           )
@@ -206,19 +206,19 @@ jobs:
 
           for path in sorted(Path("tools/dct/obj").glob("*.py")):
               text = path.read_text()
-              if "__dct_cmp(" in text and "def __dct_cmp(a, b):" not in text:
+              if "dct_cmp(" in text and "def dct_cmp(a, b):" not in text:
                   marker = "from utility.util import log\n"
                   if marker in text:
                       text = text.replace(
                           marker,
                           marker + "\n"
-                          "def __dct_cmp(a, b):\n"
+                          "def dct_cmp(a, b):\n"
                           "    return (a > b) - (a < b)\n",
                           1,
                       )
                   else:
                       text = (
-                          "def __dct_cmp(a, b):\n"
+                          "def dct_cmp(a, b):\n"
                           "    return (a > b) - (a < b)\n\n"
                           + text
                       )
