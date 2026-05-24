@@ -484,6 +484,28 @@ jobs:
               if old in text:
                   text = text.replace(old, "", 1)
                   selinux_hide.write_text(text)
+
+          string_c = Path("lib/string.c")
+          text = string_c.read_text()
+          if "char *stpcpy(char *dest, const char *src)" not in text:
+              anchor = "#ifndef __HAVE_ARCH_STRNCPY\n"
+              impl = """#ifndef __HAVE_ARCH_STPCPY
+char *stpcpy(char *dest, const char *src)
+{
+\twhile ((*dest = *src) != '\\0') {
+\t\tdest++;
+\t\tsrc++;
+\t}
+\treturn dest;
+}
+EXPORT_SYMBOL(stpcpy);
+#endif
+
+"""
+              if anchor not in text:
+                  raise SystemExit("lib/string.c stpcpy anchor not found")
+              text = text.replace(anchor, impl + anchor, 1)
+              string_c.write_text(text)
           PY
 
       - name: Apply clang compatibility fixes
