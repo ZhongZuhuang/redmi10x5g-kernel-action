@@ -290,13 +290,14 @@ jobs:
             scripts/config --file out/.config -e KPM
           fi
           if [ "${{ inputs.ENABLE_SUSFS }}" = "true" ]; then
-            scripts/config --file out/.config -e KSU_SUSFS || true
-            scripts/config --file out/.config -e KSU_SUSFS_SUS_SU || true
+            scripts/config --file out/.config -d KSU_SUSFS || true
+            scripts/config --file out/.config -d KSU_SUSFS_SUS_SU || true
             scripts/config --file out/.config -e TMPFS_XATTR -e TMPFS_POSIX_ACL || true
           fi
           if [ "${{ inputs.ENABLE_SECCOMP }}" = "true" ]; then
             scripts/config --file out/.config -e SECCOMP -e SECCOMP_FILTER
           fi
+          scripts/config --file out/.config -d CC_STACKPROTECTOR_STRONG -d CC_STACKPROTECTOR_REGULAR -e CC_STACKPROTECTOR_NONE || true
           if [ -n "${{ inputs.KERNEL_SUFFIX }}" ]; then
             scripts/config --file out/.config --set-str LOCALVERSION "${{ inputs.KERNEL_SUFFIX }}"
             scripts/config --file out/.config -d LOCALVERSION_AUTO
