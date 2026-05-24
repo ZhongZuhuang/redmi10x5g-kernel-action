@@ -348,6 +348,22 @@ jobs:
           path.write_text(text)
           PY
 
+      - name: Apply clang compatibility fixes
+        working-directory: kernel
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path("mm/rmap.c")
+          text = path.read_text()
+          text = text.replace(
+              "enum ttu_flags flags = (enum ttu_flags)arg;",
+              "enum ttu_flags flags = (enum ttu_flags)(unsigned long)arg;",
+          )
+          path.write_text(text)
+          PY
+
       - name: Configure kernel
         working-directory: kernel
         run: |
