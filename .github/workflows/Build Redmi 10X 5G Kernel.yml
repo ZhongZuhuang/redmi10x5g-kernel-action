@@ -489,19 +489,20 @@ jobs:
           text = string_c.read_text()
           if "char *stpcpy(char *dest, const char *src)" not in text:
               anchor = "#ifndef __HAVE_ARCH_STRNCPY\n"
-              impl = """#ifndef __HAVE_ARCH_STPCPY
-char *stpcpy(char *dest, const char *src)
-{
-\twhile ((*dest = *src) != '\\0') {
-\t\tdest++;
-\t\tsrc++;
-\t}
-\treturn dest;
-}
-EXPORT_SYMBOL(stpcpy);
-#endif
-
-"""
+              impl = (
+                  "#ifndef __HAVE_ARCH_STPCPY\n"
+                  "char *stpcpy(char *dest, const char *src)\n"
+                  "{\n"
+                  "\twhile ((*dest = *src) != '\\0') {\n"
+                  "\t\tdest++;\n"
+                  "\t\tsrc++;\n"
+                  "\t}\n"
+                  "\treturn dest;\n"
+                  "}\n"
+                  "EXPORT_SYMBOL(stpcpy);\n"
+                  "#endif\n"
+                  "\n"
+              )
               if anchor not in text:
                   raise SystemExit("lib/string.c stpcpy anchor not found")
               text = text.replace(anchor, impl + anchor, 1)
