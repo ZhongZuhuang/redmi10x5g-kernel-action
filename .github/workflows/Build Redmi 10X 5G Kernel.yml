@@ -33,6 +33,7 @@ on:
         required: true
         default: false
 
+
       ENABLE_SECCOMP:
         type: boolean
         description: "Enable seccomp and seccomp filter"
@@ -137,25 +138,10 @@ jobs:
           set -euo pipefail
           echo "Applying 48MP capture patch for OV48B sensor..."
           cd kernel
-          # Apply the patch
-          patch -p1 --forward < $GITHUB_WORKSPACE/patches/enable_48mp_ov48b.patch || {
-            echo "Patch failed, applying manually..."
-            sed -i 's/capture(image_window, sensor_config_data);/custom4(image_window, sensor_config_data);/' \
-              drivers/misc/mediatek/imgsensor/src/common/v1_1/ov48bofilm_mipi_raw/ov48bofilmmipiraw_Sensor.c
-          }
-          echo "48MP patch applied"
-      - name: Download toolchains
-        run: |
-          set -euo pipefail
-          git clone --depth=1 https://github.com/kdrag0n/proton-clang.git toolchains/proton-clang
-          git clone --depth=1 https://github.com/mvaisakh/gcc-arm64.git toolchains/gcc-arm64
-          git clone --depth=1 https://github.com/mvaisakh/gcc-arm.git toolchains/gcc-arm
+          sed -i 's/capture(image_window, sensor_config_data);/custom4(image_window, sensor_config_data);/' \
+            drivers/misc/mediatek/imgsensor/src/common/v1_1/ov48bofilm_mipi_raw/ov48bofilmmipiraw_Sensor.c
+          echo "48MP patch applied successfully"
 
-      - name: Apply ReSukiSU
-        if: ${{ inputs.ENABLE_RESUKISU == true }}
-        working-directory: kernel
-        run: |
-          set -euo pipefail
           if [ -n "${{ inputs.RESUKISU_REF }}" ]; then
             curl -LSs "https://raw.githubusercontent.com/ReSukiSU/ReSukiSU/main/kernel/setup.sh" | sh -s "${{ inputs.RESUKISU_REF }}"
           else
