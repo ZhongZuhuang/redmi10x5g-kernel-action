@@ -134,8 +134,11 @@ jobs:
         working-directory: kernel
         run: |
           echo "Applying 48MP capture patch for OV48B sensor..."
-          sed -i 's/capture(image_window, sensor_config_data);/custom4(image_window, sensor_config_data);/' \
-            drivers/misc/mediatek/imgsensor/src/common/v1_1/ov48bofilm_mipi_raw/ov48bofilmmipiraw_Sensor.c
+          SENSOR_FILE="drivers/misc/mediatek/imgsensor/src/common/v1_1/ov48bofilm_mipi_raw/ov48bofilmmipiraw_Sensor.c"
+          # Replace capture with custom4 in the control() function
+          sed -i 's/capture(image_window, sensor_config_data);/custom4(image_window, sensor_config_data);/' "$SENSOR_FILE"
+          # Comment out the capture function to avoid unused function error
+          sed -i '/^static kal_uint32 capture(/,/^}/s/^/\/\//' "$SENSOR_FILE"
           echo "48MP patch applied successfully"
 
       - name: Download toolchains
