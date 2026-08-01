@@ -1,0 +1,22 @@
+From: MiMoCode <mimocode@local>
+Subject: [PATCH] Enable 48MP capture mode for OV48B sensor
+
+Change the camera capture mode from 12MP binning to 48MP full resolution
+for the OV48B sensor on Redmi 10X 5G (atom).
+
+The OV48B sensor supports 8000x6000 (48MP) in custom4 mode, but the
+default driver only uses 4000x3000 (12MP) binning mode. This patch
+changes the capture scenario to use custom4 mode instead.
+
+diff --git a/drivers/misc/mediatek/imgsensor/src/common/v1_1/ov48bofilm_mipi_raw/ov48bofilmmipiraw_Sensor.c b/drivers/misc/mediatek/imgsensor/src/common/v1_1/ov48bofilm_mipi_raw/ov48bofilmmipiraw_Sensor.c
+--- a/drivers/misc/mediatek/imgsensor/src/common/v1_1/ov48bofilm_mipi_raw/ov48bofilmmipiraw_Sensor.c
++++ b/drivers/misc/mediatek/imgsensor/src/common/v1_1/ov48bofilm_mipi_raw/ov48bofilmmipiraw_Sensor.c
+@@ -1456,7 +1456,7 @@ static kal_uint32 control(enum MSDK_SCENARIO_ID_ENUM scenario_id, MSDK_SENSOR_E
+ 		preview(image_window, sensor_config_data);
+ 		break;
+ 	case MSDK_SCENARIO_ID_CAMERA_CAPTURE_JPEG:
+-		capture(image_window, sensor_config_data);
++		custom4(image_window, sensor_config_data);
+ 		break;
+ 	case MSDK_SCENARIO_ID_VIDEO_PREVIEW:
+ 		normal_video(image_window, sensor_config_data);

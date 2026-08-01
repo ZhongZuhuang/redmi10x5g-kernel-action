@@ -21,11 +21,23 @@ on:
         description: "Enable KPM image patch"
         required: true
         default: true
+      ENABLE_48MP:
+        type: boolean
+        description: "Enable 48MP capture mode for OV48B sensor"
+        required: true
+        default: true
+
       ENABLE_SUSFS:
         type: boolean
         description: "Apply external SUSFS kernel-4.14 patches; ReSukiSU already includes SUSFS-side support"
         required: true
         default: false
+      ENABLE_48MP:
+        type: boolean
+        description: "Enable 48MP capture mode for OV48B sensor"
+        required: true
+        default: true
+
       ENABLE_SECCOMP:
         type: boolean
         description: "Enable seccomp and seccomp filter"
@@ -124,6 +136,19 @@ jobs:
           git log -1 --oneline
           grep -E '^(VERSION|PATCHLEVEL|SUBLEVEL) = ' Makefile
 
+      - name: Apply 48MP capture patch
+        if: ${{ inputs.ENABLE_48MP == true }}
+        run: |
+          set -euo pipefail
+          echo "Applying 48MP capture patch for OV48B sensor..."
+          cd kernel
+          # Apply the patch
+          patch -p1 --forward < $GITHUB_WORKSPACE/patches/enable_48mp_ov48b.patch || {
+            echo "Patch failed, applying manually..."
+            sed -i 's/capture(image_window, sensor_config_data);/custom4(image_window, sensor_config_data);/' \
+              drivers/misc/mediatek/imgsensor/src/common/v1_1/ov48bofilm_mipi_raw/ov48bofilmmipiraw_Sensor.c
+          }
+          echo "48MP patch applied"
       - name: Download toolchains
         run: |
           set -euo pipefail
