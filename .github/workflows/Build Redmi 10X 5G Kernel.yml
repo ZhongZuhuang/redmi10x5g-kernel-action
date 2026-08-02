@@ -5,6 +5,8 @@ on:
     inputs:
       DEVICE:
         type: choice
+        options:
+          - atom
         description: "Device config"
         required: true
         default: atom
